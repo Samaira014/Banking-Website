@@ -15,6 +15,12 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import Transfer from "./pages/Transfer";
 import Transactions from "./pages/Transactions";
+import Cards from "./pages/Cards";
+import CardItems from "./components/CardItems";
+import StatCard from "./components/StatCard";
+import AddCard from "./pages/AddCard";
+import Settings from "./pages/Settings";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -42,6 +48,18 @@ function App() {
          <Route path="/transfer" element={<Transfer />} />
 
          <Route path="/transactions" element={<Transactions />} />
+
+         <Route path="/cards" element= {<Cards />}/>
+
+         <Route path="/cardItems" element= {<CardItems />}/>
+
+         <Route path="/statcCard" element= {<StatCard />}/>
+
+         <Route path="/add-card" element={<AddCard />} />
+
+         <Route path="/settings" element={<Settings />} />
+
+         <Route path="/logout" element={<Logout />} />
       </Routes>
       <Footer />
     </BrowserRouter>

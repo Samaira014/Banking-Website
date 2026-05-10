@@ -45,7 +45,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-white to-indigo-100 px-4 overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-100 via-white to-indigo-100 px-4 overflow-hidden">
 
       {/* Animated Background Circles */}
       <motion.div

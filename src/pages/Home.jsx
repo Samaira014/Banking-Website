@@ -8,6 +8,24 @@ import {
 import { motion } from "framer-motion";
 
 function Home() {
+  const quickActions = [
+  {
+    name: "Transfer",
+    path: "/transfer",
+  },
+  {
+    name: "Transactions",
+    path: "/transactions",
+  },
+  {
+    name: "Cards",
+    path: "/cards",
+  },
+  {
+    name: "Settings",
+    path: "/settings",
+  },
+];
   return (
     <div className="min-h-screen bg-gray-100">
 
@@ -108,15 +126,16 @@ function Home() {
           {/* 🔹 Quick Actions */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14">
 
-            {["Transfer", "Transactions", "Cards", "Settings"].map((item, i) => (
-              <div
+            {quickActions.map((item, i) => (
+              <Link
+                to={item.path}
                 key={i}
                 className="bg-white/20 backdrop-blur-md border border-white/20 
                 p-4 rounded-xl text-center cursor-pointer 
-                hover:scale-105 hover:bg-white/30 transition"
+                hover:scale-105 hover:bg-white/30 transition-all duration-300"
               >
-                {item}
-              </div>
+                {item.name}
+              </Link>
             ))}
 
           </div>
