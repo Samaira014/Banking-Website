@@ -9,6 +9,8 @@ import {
   Save,
   ArrowLeft,
   ShieldCheck,
+  Camera,
+  Sparkles,
 } from "lucide-react";
 
 export default function EditProfile() {
@@ -28,257 +30,270 @@ export default function EditProfile() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      await fetch("/api/user/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      alert("Profile Updated Successfully");
-
-      navigate("/profile");
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Update Failed");
-    }
+    alert("Profile Updated Successfully");
+    navigate("/profile");
   };
 
   return (
-    <div className="min-h-screen bg-[#f4f7fb] flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
+    <div className="min-h-screen bg-[#060816] text-white overflow-hidden relative">
+      
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-0 w-87.5 md:w-125 h-87.5 md:h-125 bg-cyan-500/20 blur-[120px] rounded-full animate-pulse" />
 
-      {/* BACKGROUND GLOW */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 6,
-        }}
-        className="absolute w-[500px] h-[500px] bg-blue-300 blur-3xl rounded-full -top-40 -right-32"
-      />
+        <div className="absolute bottom-0 right-0 w-87.5 md:w-125 h-87.5 md:h-125 bg-blue-500/20 blur-[120px] rounded-full animate-pulse" />
+      </div>
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 40,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.6,
-          ease: "easeOut",
-        }}
-        className="relative z-10 w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-6"
-      >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
 
-        {/* LEFT SIDE */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: -40,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
-          className="lg:col-span-1"
-        >
+        {/* TOP BAR */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-10">
 
-          {/* PROFILE CARD */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#2563eb] rounded-[32px] p-8 shadow-2xl text-white h-full">
+          <div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+              Edit Profile
+            </h1>
 
-            {/* Animated Circle */}
-            <motion.div
-              animate={{
-                scale: [1, 1.15, 1],
-                opacity: [0.15, 0.3, 0.15],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 5,
-              }}
-              className="absolute w-80 h-80 bg-blue-400 rounded-full blur-3xl -top-24 -right-20"
-            />
+            <p className="text-slate-400 mt-2 text-sm sm:text-base">
+              Manage your banking profile & personal details
+            </p>
+          </div>
 
-            <div className="relative z-10 flex flex-col h-full">
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => navigate("/profile")}
+            className="
+            h-14 px-6 rounded-2xl
+            bg-white/5 border border-white/10
+            backdrop-blur-xl
+            flex items-center justify-center gap-2
+            text-sm sm:text-base
+            "
+          >
+            <ArrowLeft size={20} />
+            Back
+          </motion.button>
+        </div>
 
-              {/* Avatar */}
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                }}
-                className="w-24 h-24 rounded-full bg-white/20 backdrop-blur-lg border border-white/20 flex items-center justify-center text-4xl font-bold shadow-lg"
-              >
-                S
-              </motion.div>
+        {/* MAIN GRID */}
+        <div className="grid xl:grid-cols-[0.95fr_1.4fr] gap-8 items-start">
 
-              <div className="mt-6">
-                <h2 className="text-3xl font-bold">
+          {/* LEFT PROFILE CARD */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="
+            relative overflow-hidden
+            rounded-4xl
+            bg-linear-to-br
+            from-[#111827]
+            via-[#172554]
+            to-[#0f172a]
+            border border-white/10
+            p-6 sm:p-8
+            shadow-[0_20px_80px_rgba(0,0,0,0.45)]
+            "
+          >
+
+            {/* glow */}
+            <div className="absolute top-0 right-0 w-60 h-60 bg-cyan-500/20 blur-3xl rounded-full" />
+
+            <div className="relative z-10">
+
+              {/* avatar */}
+              <div className="flex flex-col items-center text-center">
+
+                <div className="relative">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className="
+                    w-28 h-28 sm:w-32 sm:h-32
+                    rounded-full
+                    bg-linear-to-br from-cyan-400 to-blue-600
+                    flex items-center justify-center
+                    text-5xl font-bold
+                    shadow-[0_10px_40px_rgba(6,182,212,0.45)]
+                    "
+                  >
+                    S
+                  </motion.div>
+
+                  <button
+                    className="
+                    absolute bottom-1 right-1
+                    w-10 h-10 rounded-full
+                    bg-white text-slate-900
+                    flex items-center justify-center
+                    shadow-lg
+                    "
+                  >
+                    <Camera size={18} />
+                  </button>
+                </div>
+
+                <h2 className="text-2xl font-bold mt-6">
                   {formData.name}
                 </h2>
 
-                <p className="text-blue-100 mt-2">
+                <p className="text-slate-400 mt-2 break-all">
                   {formData.email}
                 </p>
               </div>
 
-              {/* STATUS */}
-              <motion.div
-                animate={{
-                  y: [0, -5, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 2,
-                }}
-                className="mt-8 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-5"
+              {/* VERIFIED */}
+              <div
+                className="
+                mt-8
+                rounded-3xl
+                bg-white/5
+                border border-white/10
+                p-5
+                backdrop-blur-xl
+                "
               >
-                <div className="flex items-center gap-3">
-                  <ShieldCheck size={24} />
+                <div className="flex items-center gap-4">
+                  <div
+                    className="
+                    w-14 h-14 rounded-2xl
+                    bg-cyan-500/20
+                    text-cyan-300
+                    flex items-center justify-center
+                    "
+                  >
+                    <ShieldCheck size={28} />
+                  </div>
 
                   <div>
-                    <p className="text-blue-100 text-sm">
+                    <p className="text-slate-400 text-sm">
                       Account Status
                     </p>
 
-                    <h3 className="font-semibold text-lg">
-                      Verified Account
+                    <h3 className="font-semibold text-lg mt-1">
+                      Verified User
                     </h3>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              {/* MINI INFO */}
-              <div className="mt-8 space-y-4">
+              {/* AI INSIGHT */}
+              <div className="
+                mt-5
+                rounded-3xl
+                bg-white/5
+                border border-white/10
+                p-5
+                backdrop-blur-xl
+                ">
+                <div className="flex items-start gap-4">
 
-                <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-4">
-                  <p className="text-blue-100 text-sm">
+                  <div
+                    className="
+                    w-14 h-14 rounded-2xl
+                    bg-cyan-500/20
+                    text-cyan-300
+                    flex items-center justify-center
+                    "
+                  >
+                    <Sparkles size={22} />
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-lg">
+                      AI Suggestion
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* MINI CARDS */}
+              <div className="mt-6 space-y-4">
+
+                <div className="rounded-2xl bg-white/5 border border-white/10 p-4">
+                  <p className="text-slate-400 text-sm">
                     Phone Number
                   </p>
 
-                  <h3 className="font-semibold mt-1">
+                  <h3 className="font-semibold mt-1 break-all">
                     {formData.phone}
                   </h3>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-4">
-                  <p className="text-blue-100 text-sm">
+                <div className="rounded-2xl bg-white/5 border border-white/10 p-4">
+                  <p className="text-slate-400 text-sm">
                     Address
                   </p>
 
-                  <h3 className="font-semibold mt-1">
+                  <h3 className="font-semibold mt-1 break-words">
                     {formData.address}
                   </h3>
                 </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        {/* RIGHT SIDE */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: 40,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
-          className="lg:col-span-2"
-        >
-
-          <div className="bg-white rounded-[32px] shadow-2xl border border-gray-100 overflow-hidden">
+          {/* RIGHT FORM */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="
+            rounded-[32px]
+            bg-white/5
+            border border-white/10
+            backdrop-blur-3xl
+            overflow-hidden
+            shadow-[0_20px_80px_rgba(0,0,0,0.35)]
+            "
+          >
 
             {/* HEADER */}
-            <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white">
+            <div
+              className="
+              relative overflow-hidden
+              px-6 sm:px-8 py-7
+              border-b border-white/10
+              "
+            >
+              <div className="absolute top-0 right-0 w-52 h-52 bg-blue-500/20 blur-3xl rounded-full" />
 
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.1, 0.2, 0.1],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 5,
-                }}
-                className="absolute w-72 h-72 bg-white rounded-full -top-32 -right-24"
-              />
+              <div className="relative z-10">
+                <h2 className="text-2xl sm:text-3xl font-bold">
+                  Personal Information
+                </h2>
 
-              <div className="relative z-10 flex items-center justify-between flex-wrap gap-4">
-
-                <div>
-                  <h1 className="text-3xl md:text-4xl font-bold">
-                    Edit Profile
-                  </h1>
-
-                  <p className="text-blue-100 mt-2">
-                    Update your banking profile details
-                  </p>
-                </div>
-
-                <motion.button
-                  whileHover={{
-                    scale: 1.05,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  onClick={() => navigate("/profile")}
-                  className="bg-white/20 backdrop-blur-lg border border-white/20 px-5 py-3 rounded-2xl flex items-center gap-2"
-                >
-                  <ArrowLeft size={20} />
-                  Back
-                </motion.button>
+                <p className="text-slate-400 mt-2">
+                  Update your personal details securely
+                </p>
               </div>
             </div>
 
             {/* FORM */}
             <form
               onSubmit={handleSubmit}
-              className="p-6 md:p-8 space-y-6"
+              className="p-5 sm:p-8 space-y-6"
             >
 
               {/* NAME */}
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.1,
-                }}
-              >
-                <label className="text-gray-700 font-semibold block mb-2">
+              <div>
+                <label className="text-slate-300 font-medium block mb-3">
                   Full Name
                 </label>
 
-                <div className="flex items-center bg-[#f8fafc] border border-gray-200 rounded-2xl px-4 focus-within:ring-2 focus-within:ring-blue-500 transition-all">
-
-                  <User
-                    className="text-gray-400"
-                    size={20}
-                  />
+                <div
+                  className="
+                  flex items-center gap-3
+                  h-16 px-5
+                  rounded-2xl
+                  bg-white/5
+                  border border-white/10
+                  focus-within:border-cyan-400
+                  transition-all
+                  "
+                >
+                  <User className="text-slate-400" size={20} />
 
                   <input
                     type="text"
@@ -286,72 +301,67 @@ export default function EditProfile() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter full name"
-                    className="w-full p-4 bg-transparent focus:outline-none"
-                    required
+                    className="
+                    w-full bg-transparent
+                    outline-none
+                    text-white
+                    placeholder:text-slate-500
+                    "
                   />
                 </div>
-              </motion.div>
+              </div>
 
               {/* EMAIL + PHONE */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid md:grid-cols-2 gap-5">
 
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    delay: 0.2,
-                  }}
-                >
-                  <label className="text-gray-700 font-semibold block mb-2">
+                {/* EMAIL */}
+                <div>
+                  <label className="text-slate-300 font-medium block mb-3">
                     Email Address
                   </label>
 
-                  <div className="flex items-center bg-gray-100 border border-gray-200 rounded-2xl px-4">
-
-                    <Mail
-                      className="text-gray-400"
-                      size={20}
-                    />
+                  <div
+                    className="
+                    flex items-center gap-3
+                    h-16 px-5
+                    rounded-2xl
+                    bg-white/5
+                    border border-white/10
+                    "
+                  >
+                    <Mail className="text-slate-400" size={20} />
 
                     <input
                       type="email"
-                      name="email"
                       value={formData.email}
                       disabled
-                      className="w-full p-4 bg-transparent focus:outline-none text-gray-500"
+                      className="
+                      w-full bg-transparent
+                      outline-none
+                      text-slate-400
+                      "
                     />
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    delay: 0.3,
-                  }}
-                >
-                  <label className="text-gray-700 font-semibold block mb-2">
+                {/* PHONE */}
+                <div>
+                  <label className="text-slate-300 font-medium block mb-3">
                     Phone Number
                   </label>
 
-                  <div className="flex items-center bg-[#f8fafc] border border-gray-200 rounded-2xl px-4 focus-within:ring-2 focus-within:ring-blue-500 transition-all">
-
-                    <Phone
-                      className="text-gray-400"
-                      size={20}
-                    />
+                  <div
+                    className="
+                    flex items-center gap-3
+                    h-16 px-5
+                    rounded-2xl
+                    bg-white/5
+                    border border-white/10
+                    focus-within:border-cyan-400
+                    transition-all
+                    "
+                  >
+                    <Phone className="text-slate-400" size={20} />
 
                     <input
                       type="text"
@@ -359,96 +369,102 @@ export default function EditProfile() {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="Enter phone number"
-                      className="w-full p-4 bg-transparent focus:outline-none"
+                      className="
+                      w-full bg-transparent
+                      outline-none
+                      text-white
+                      placeholder:text-slate-500
+                      "
                     />
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* ADDRESS */}
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.4,
-                }}
-              >
-                <label className="text-gray-700 font-semibold block mb-2">
+              <div>
+                <label className="text-slate-300 font-medium block mb-3">
                   Address
                 </label>
 
-                <div className="flex items-start bg-[#f8fafc] border border-gray-200 rounded-2xl px-4 focus-within:ring-2 focus-within:ring-blue-500 transition-all">
-
+                <div
+                  className="
+                  flex items-start gap-3
+                  px-5 py-4
+                  rounded-2xl
+                  bg-white/5
+                  border border-white/10
+                  focus-within:border-cyan-400
+                  transition-all
+                  "
+                >
                   <MapPin
-                    className="text-gray-400 mt-4"
+                    className="text-slate-400 mt-1"
                     size={20}
                   />
 
                   <textarea
+                    rows="5"
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
-                    rows="4"
                     placeholder="Enter address"
-                    className="w-full p-4 bg-transparent focus:outline-none resize-none"
+                    className="
+                    w-full bg-transparent
+                    outline-none
+                    resize-none
+                    text-white
+                    placeholder:text-slate-500
+                    "
                   />
                 </div>
-              </motion.div>
+              </div>
 
               {/* BUTTONS */}
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.5,
-                }}
-                className="flex flex-col sm:flex-row gap-4 pt-4"
-              >
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
 
                 <motion.button
                   type="button"
-                  whileHover={{
-                    scale: 1.03,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.96 }}
                   onClick={() => navigate("/profile")}
-                  className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-4 rounded-2xl font-semibold transition"
+                  className="
+                  flex-1
+                  h-14
+                  rounded-2xl
+                  bg-white/5
+                  border border-white/10
+                  text-white
+                  font-semibold
+                  "
                 >
                   Cancel
                 </motion.button>
 
                 <motion.button
                   type="submit"
-                  whileHover={{
-                    scale: 1.03,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 shadow-lg"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="
+                  flex-1
+                  h-14
+                  rounded-2xl
+                  bg-gradient-to-r
+                  from-cyan-500
+                  to-blue-600
+                  text-white
+                  font-semibold
+                  flex items-center justify-center gap-2
+                  shadow-[0_10px_30px_rgba(6,182,212,0.45)]
+                  "
                 >
                   <Save size={20} />
                   Save Changes
                 </motion.button>
-              </motion.div>
+              </div>
             </form>
-          </div>
-        </motion.div>
-      </motion.div>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }

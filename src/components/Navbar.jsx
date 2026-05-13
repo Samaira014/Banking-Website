@@ -37,7 +37,12 @@ function Navbar() {
               >
                 Dashboard
             </Link>
-
+            <Link
+              to="/cards"
+              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 transition"
+            >
+              Card
+            </Link>
             <Link
               to="/transfer"
               className="text-gray-700 dark:text-gray-200 hover:text-blue-600 transition"
@@ -130,7 +135,12 @@ function Navbar() {
               >
                 Dashboard
           </Link>
-
+          <Link
+              to="/cards"
+              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 transition"
+            >
+              Card
+            </Link>
           <Link
             to="/transfer"
             className="block text-gray-700 dark:text-gray-200 hover:text-blue-600"
