@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useDarkMode from "@/hooks/useDarkMode";
+import { m } from "framer-motion";
 
 import {
   User,
@@ -11,12 +13,12 @@ import {
   LogOut,
   ChevronRight,
   Camera,
-} from "lucide-react";
+} from "@/utils/icons";
 
-import { motion } from "framer-motion";
+
 
 export default function Settings() {
-  const [darkMode, setDarkMode] = useState(true);
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [notifications, setNotifications] = useState(true);
 
   const settingSections = [
@@ -57,7 +59,7 @@ export default function Settings() {
           desc: "Switch app appearance",
           toggle: true,
           value: darkMode,
-          action: () => setDarkMode(!darkMode),
+          action: toggleDarkMode,
         },
       ],
     },
@@ -83,17 +85,17 @@ export default function Settings() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0f1f] p-4 md:p-8 relative overflow-hidden">
+    <div className="min-h-screen  bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 p-4 md:p-8 relative overflow-hidden">
 
       {/* BACKGROUND GLOWS */}
-      <div className="absolute top-0 left-0 w-[450px] h-[450px] bg-cyan-500/20 blur-[140px] rounded-full"></div>
+      <div className="absolute top-0 left-0 w-112.5 h-112.5 bg-cyan-500/20 blur-[140px] rounded-full"></div>
 
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/20 blur-[140px] rounded-full"></div>
+      <div className="absolute bottom-0 right-0 w-100 h-100 bg-blue-500/20 blur-[140px] rounded-full"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* HEADER */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col md:flex-row md:items-center md:justify-between mb-10"
@@ -109,25 +111,25 @@ export default function Settings() {
             </p>
           </div>
 
-          <motion.button
+          <m.button
             whileHover={{
               scale: 1.05,
               boxShadow:
                 "0px 0px 30px rgba(34,211,238,0.4)",
             }}
             whileTap={{ scale: 0.95 }}
-            className="mt-6 md:mt-0 px-7 py-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold shadow-lg"
+            className="mt-6 md:mt-0 px-7 py-3 rounded-2xl bg-linear-to-r from-cyan-400 to-blue-500 text-white font-semibold shadow-lg"
           >
             Save Changes
-          </motion.button>
-        </motion.div>
+          </m.button>
+        </m.div>
 
         {/* PROFILE SECTION */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-[#131a2e]/90 border border-white/5 backdrop-blur-xl rounded-[32px] p-6 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.4)] mb-8"
+          className="bg-white dark:bg-[#131a2e]/90 border border-white/5 backdrop-blur-xl rounded-4xl p-6 md:p-8 shadow-[0_0_40px_rgba(0,0,0,0.4)] mb-8"
         >
 
           <div className="flex flex-col lg:flex-row items-center gap-8">
@@ -135,19 +137,19 @@ export default function Settings() {
             {/* AVATAR */}
             <div className="relative">
 
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.05 }}
-                className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-5xl font-bold text-white shadow-2xl"
+                className="w-32 h-32 rounded-full bg-linear-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-5xl font-bold text-white shadow-2xl"
               >
                 S
-              </motion.div>
+              </m.div>
 
-              <motion.button
+              <m.button
                 whileHover={{ scale: 1.1 }}
                 className="absolute bottom-2 right-2 bg-white text-gray-600 p-2 rounded-full shadow-lg"
               >
                 <Camera size={18} />
-              </motion.button>
+              </m.button>
             </div>
 
             {/* USER INFO */}
@@ -174,12 +176,12 @@ export default function Settings() {
             </div>
 
             {/* BALANCE CARD */}
-            <motion.div
+            <m.div
               whileHover={{
                 y: -6,
                 scale: 1.02,
               }}
-              className="min-w-[280px] rounded-[30px] p-7 bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-700 text-white shadow-[0_0_40px_rgba(59,130,246,0.4)]"
+              className="min-w-70 rounded-[30px] p-7 bg-linear-to-br from-cyan-400 via-blue-500 to-indigo-700 text-white shadow-[0_0_40px_rgba(59,130,246,0.4)]"
             >
 
               <p className="text-white/70 text-sm">
@@ -212,15 +214,15 @@ export default function Settings() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* SETTINGS CARDS */}
         <div className="grid lg:grid-cols-3 gap-6">
 
           {settingSections.map((section, index) => (
-            <motion.div
+            <m.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -240,7 +242,7 @@ export default function Settings() {
 
                   item.toggle ? (
 
-                    <motion.div
+                    <m.div
                       key={i}
                       whileHover={{
                         scale: 1.02,
@@ -278,13 +280,13 @@ export default function Settings() {
                       >
                         <div className="w-5 h-5 bg-white rounded-full"></div>
                       </button>
-                    </motion.div>
+                    </m.div>
 
                   ) : (
 
                     <Link to={item.link} key={i}>
 
-                      <motion.div
+                      <m.div
                         whileHover={{
                           scale: 1.02,
                           backgroundColor:
@@ -314,21 +316,21 @@ export default function Settings() {
                           className="text-gray-500"
                           size={20}
                         />
-                      </motion.div>
+                      </m.div>
                     </Link>
                   )
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* SECURITY SECTION */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-8 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-white/5 rounded-[32px] p-7 backdrop-blur-xl"
+          className="mt-8 bg-linear-to-r from-cyan-500/10 to-blue-500/10 border border-white/5 rounded-4xl p-7 backdrop-blur-xl"
         >
 
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -350,7 +352,7 @@ export default function Settings() {
             {/* BUTTONS */}
             <div className="flex flex-wrap gap-4">
 
-              <motion.button
+              <m.button
                 whileHover={{
                   scale: 1.05,
                   backgroundColor: "#ffffff",
@@ -359,12 +361,12 @@ export default function Settings() {
                 className="px-6 py-3 rounded-2xl bg-white text-gray-900 font-semibold shadow-lg"
               >
                 Security Center
-              </motion.button>
+              </m.button>
 
               {/* LOGOUT LINK */}
               <Link to="/logout">
 
-                <motion.button
+                <m.button
                   whileHover={{
                     scale: 1.05,
                     backgroundColor: "#ef4444",
@@ -374,11 +376,11 @@ export default function Settings() {
                 >
                   <LogOut size={18} />
                   Logout
-                </motion.button>
+                </m.button>
               </Link>
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* FOOTER */}
         <div className="text-center mt-8">

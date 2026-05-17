@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { m } from "framer-motion";
 import {
   CreditCard,
   User,
@@ -6,9 +7,8 @@ import {
   Plus,
   ShieldCheck,
   Sparkles,
-} from "lucide-react";
+} from "@/utils/icons";
 
-import { motion } from "framer-motion";
 
 export default function AddCard() {
   const [form, setForm] = useState({
@@ -69,7 +69,7 @@ export default function AddCard() {
   const cardType = getCardType(form.cardNumber.replace(/\s/g, ""));
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#333449] relative flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen overflow-hidden bg-gray-100 dark:bg-zinc-950 text-black dark:text-white transition-all duration-300 relative flex items-center justify-center px-4 py-10">
 
       {/* BACKGROUND GLOW */}
       <div className="absolute top-0 left-0 w-100 h-100 bg-cyan-500/20 blur-[120px] rounded-full"></div>
@@ -83,7 +83,7 @@ export default function AddCard() {
         <div className="relative p-8 md:p-12 bg-linear-to-br from-[#0f172a] via-[#111827] to-[#1e293b] text-white overflow-hidden flex flex-col justify-between">
 
           {/* Animated circles */}
-          <motion.div
+          <m.div
             animate={{
               y: [0, -20, 0],
             }}
@@ -94,7 +94,7 @@ export default function AddCard() {
             className="absolute top-10 right-10 w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl"
           />
 
-          <motion.div
+          <m.div
             animate={{
               y: [0, 20, 0],
             }}
@@ -108,12 +108,12 @@ export default function AddCard() {
           {/* HEADER */}
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-8">
-              <motion.div
+              <m.div
                 whileHover={{ rotate: 10, scale: 1.1 }}
                 className="w-12 h-12 rounded-2xl bg-cyan-500/20 flex items-center justify-center"
               >
                 <CreditCard size={24} />
-              </motion.div>
+              </m.div>
 
               <div>
                 <h1 className="text-2xl font-bold">NeoBank</h1>
@@ -123,7 +123,7 @@ export default function AddCard() {
               </div>
             </div>
 
-            <motion.h2
+            <m.h2
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -131,7 +131,7 @@ export default function AddCard() {
             >
               Add Your <br />
               Premium Card
-            </motion.h2>
+            </m.h2>
 
             <p className="mt-6 text-white/70 text-lg max-w-md">
               Securely add and manage your debit & credit cards with
@@ -140,7 +140,7 @@ export default function AddCard() {
           </div>
 
           {/* CARD PREVIEW */}
-          <motion.div
+          <m.div
             whileHover={{
               rotateY: 8,
               rotateX: 4,
@@ -152,7 +152,7 @@ export default function AddCard() {
             <div className="relative h-64 rounded-4xl overflow-hidden bg-linear-to-br from-cyan-400 via-blue-500 to-indigo-700 p-7 shadow-2xl border border-white/20">
 
               {/* Shine effect */}
-              <motion.div
+              <m.div
                 animate={{
                   x: ["-100%", "200%"],
                 }}
@@ -197,7 +197,7 @@ export default function AddCard() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* FEATURES */}
           <div className="grid sm:grid-cols-3 gap-4 mt-10 relative z-10">
@@ -216,7 +216,7 @@ export default function AddCard() {
                 title: "Smart Banking",
               },
             ].map((item, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 whileHover={{
                   y: -5,
@@ -226,13 +226,13 @@ export default function AddCard() {
               >
                 <div className="mb-3 text-cyan-300">{item.icon}</div>
                 <p className="text-sm font-medium">{item.title}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
 
         {/* RIGHT SIDE */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: 70 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
@@ -251,13 +251,13 @@ export default function AddCard() {
 
           {/* SUCCESS */}
           {success && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
               className="mb-6 bg-green-100 text-green-700 p-4 rounded-2xl font-medium"
             >
               🎉 Your card has been added successfully!
-            </motion.div>
+            </m.div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -268,7 +268,7 @@ export default function AddCard() {
                 Card Holder Name
               </label>
 
-              <motion.div
+              <m.div
                 whileFocus={{ scale: 1.02 }}
                 className="mt-2 flex items-center border-2 border-gray-200 focus-within:border-cyan-500 rounded-2xl px-4 py-4 transition-all duration-300"
               >
@@ -282,7 +282,7 @@ export default function AddCard() {
                   placeholder="John Doe"
                   className="w-full outline-none bg-transparent"
                 />
-              </motion.div>
+              </m.div>
             </div>
 
             {/* CARD NUMBER */}
@@ -297,7 +297,7 @@ export default function AddCard() {
                 </span>
               </div>
 
-              <motion.div
+              <m.div
                 whileFocus={{ scale: 1.02 }}
                 className="mt-2 flex items-center border-2 border-gray-200 focus-within:border-cyan-500 rounded-2xl px-4 py-4 transition-all duration-300"
               >
@@ -315,7 +315,7 @@ export default function AddCard() {
                   placeholder="1234 5678 9012 3456"
                   className="w-full outline-none bg-transparent tracking-[2px]"
                 />
-              </motion.div>
+              </m.div>
             </div>
 
             {/* EXPIRY + CVV */}
@@ -326,7 +326,7 @@ export default function AddCard() {
                   Expiry Date
                 </label>
 
-                <motion.input
+                <m.input
                   whileFocus={{ scale: 1.02 }}
                   type="text"
                   name="expiry"
@@ -342,7 +342,7 @@ export default function AddCard() {
                   CVV
                 </label>
 
-                <motion.input
+                <m.input
                   whileFocus={{ scale: 1.02 }}
                   type="password"
                   name="cvv"
@@ -360,7 +360,7 @@ export default function AddCard() {
                 Credit Limit
               </label>
 
-              <motion.div
+              <m.div
                 whileFocus={{ scale: 1.02 }}
                 className="mt-2 flex items-center border-2 border-gray-200 focus-within:border-cyan-500 rounded-2xl px-4 py-4 transition-all duration-300"
               >
@@ -374,14 +374,14 @@ export default function AddCard() {
                   placeholder="50000"
                   className="w-full outline-none bg-transparent"
                 />
-              </motion.div>
+              </m.div>
             </div>
             {/* BUTTON SECTION */}
             <div className="pt-4">
 
               {/* BUTTON */}
               <div className="flex justify-center">
-                <motion.button
+                <m.button
                   whileHover={{
                     scale: 1.03,
                     boxShadow:"0px 0px 30px rgba(6,182,212,0.5)",
@@ -392,7 +392,7 @@ export default function AddCard() {
                 >
 
                   {/* Shine Effect */}
-                  <motion.div
+                  <m.div
                     animate={{
                       x: ["-100%", "200%"],
                     }}
@@ -408,7 +408,7 @@ export default function AddCard() {
                     <Plus size={20} />
                     Add Card Securely
                   </span>
-                </motion.button>
+                </m.button>
               </div>
                 {/* FOOTER TEXT */}
                 <p className="text-center text-xs text-gray-400 mt-5">
@@ -416,7 +416,7 @@ export default function AddCard() {
                 </p>
             </div>
           </form>
-        </motion.div>
+        </m.div>
       </div>
     </div>
   );

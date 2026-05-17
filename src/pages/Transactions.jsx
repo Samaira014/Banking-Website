@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Search,
   ArrowDownLeft,
@@ -6,7 +6,7 @@ import {
   Wallet,
   Filter,
   TrendingUp,
-} from "lucide-react";
+} from "@/utils/icons";
 
 export default function Transactions() {
   const transactions = [
@@ -63,7 +63,7 @@ export default function Transactions() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f4f7fb] overflow-hidden">
+    <div className="min-h-screen  bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 overflow-hidden">
 
       {/* MAIN */}
       <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
@@ -72,7 +72,7 @@ export default function Transactions() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
 
           {/* BALANCE CARD */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -89,7 +89,7 @@ export default function Transactions() {
           >
 
             {/* Animated Glow */}
-            <motion.div
+            <m.div
               animate={{
                 scale: [1, 1.15, 1],
                 opacity: [0.2, 0.35, 0.2],
@@ -104,7 +104,7 @@ export default function Transactions() {
               className="absolute w-[420px] h-[420px] bg-blue-400 rounded-full blur-3xl -top-40 -right-20"
             />
 
-            <motion.div
+            <m.div
               animate={{
                 rotate: [0, 360],
               }}
@@ -121,16 +121,16 @@ export default function Transactions() {
               <div className="flex items-start justify-between flex-wrap gap-4">
 
                 <div>
-                  <motion.p
+                  <m.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
                     className="text-blue-100 text-sm tracking-widest uppercase"
                   >
                     Total Balance
-                  </motion.p>
+                  </m.p>
 
-                  <motion.h1
+                  <m.h1
                     animate={{
                       scale: [1, 1.02, 1],
                     }}
@@ -142,10 +142,10 @@ export default function Transactions() {
                     className="text-5xl md:text-6xl font-bold text-white mt-3"
                   >
                     ₹1,24,500
-                  </motion.h1>
+                  </m.h1>
                 </div>
 
-                <motion.div
+                <m.div
                   animate={{
                     y: [0, -6, 0],
                   }}
@@ -166,13 +166,13 @@ export default function Transactions() {
                   <h3 className="text-white font-semibold mt-1">
                     •••• 4521
                   </h3>
-                </motion.div>
+                </m.div>
               </div>
 
               {/* BOTTOM */}
               <div className="flex flex-wrap items-center justify-between mt-12 gap-6">
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 }}
@@ -184,11 +184,11 @@ export default function Transactions() {
                   <h3 className="text-white text-2xl font-semibold mt-1">
                     Samaira Singh
                   </h3>
-                </motion.div>
+                </m.div>
 
                 <div className="flex gap-4 flex-wrap">
 
-                  <motion.div
+                  <m.div
                     whileHover={{
                       scale: 1.06,
                     }}
@@ -201,9 +201,9 @@ export default function Transactions() {
                     <h3 className="text-green-300 text-xl font-bold mt-1">
                       + ₹97K
                     </h3>
-                  </motion.div>
+                  </m.div>
 
-                  <motion.div
+                  <m.div
                     whileHover={{
                       scale: 1.06,
                     }}
@@ -216,14 +216,14 @@ export default function Transactions() {
                     <h3 className="text-red-300 text-xl font-bold mt-1">
                       - ₹18K
                     </h3>
-                  </motion.div>
+                  </m.div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* ANALYTICS CARD */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
@@ -242,7 +242,7 @@ export default function Transactions() {
                   Monthly Spending
                 </p>
 
-                <motion.h2
+                <m.h2
                   animate={{
                     opacity: [1, 0.8, 1],
                   }}
@@ -253,10 +253,10 @@ export default function Transactions() {
                   className="text-4xl font-bold text-gray-800 mt-2"
                 >
                   ₹18,000
-                </motion.h2>
+                </m.h2>
               </div>
 
-              <motion.div
+              <m.div
                 whileHover={{
                   rotate: 10,
                   scale: 1.1,
@@ -264,7 +264,7 @@ export default function Transactions() {
                 className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center"
               >
                 <Wallet className="text-blue-600" size={30} />
-              </motion.div>
+              </m.div>
             </div>
 
             {/* PROGRESS */}
@@ -282,7 +282,7 @@ export default function Transactions() {
 
               <div className="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
 
-                <motion.div
+                <m.div
                   initial={{ width: 0 }}
                   animate={{ width: "72%" }}
                   transition={{
@@ -297,7 +297,7 @@ export default function Transactions() {
             {/* MINI STATS */}
             <div className="grid grid-cols-2 gap-4 mt-8">
 
-              <motion.div
+              <m.div
                 whileHover={{
                   scale: 1.05,
                 }}
@@ -310,9 +310,9 @@ export default function Transactions() {
                 <h3 className="text-xl font-bold text-green-600 mt-1">
                   ₹45K
                 </h3>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 whileHover={{
                   scale: 1.05,
                 }}
@@ -325,17 +325,17 @@ export default function Transactions() {
                 <h3 className="text-xl font-bold text-orange-500 mt-1">
                   ₹1.2K
                 </h3>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* EXTRA CARD */}
-            <motion.div
+            <m.div
               whileHover={{
                 x: 5,
               }}
               className="mt-6 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-4 flex items-center gap-4"
             >
-              <motion.div
+              <m.div
                 animate={{
                   rotate: [0, 10, -10, 0],
                 }}
@@ -346,7 +346,7 @@ export default function Transactions() {
                 className="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center"
               >
                 <TrendingUp size={24} />
-              </motion.div>
+              </m.div>
 
               <div>
                 <h3 className="font-semibold text-gray-800">
@@ -357,12 +357,12 @@ export default function Transactions() {
                   Your savings increased by 18%
                 </p>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
 
         {/* TRANSACTION SECTION */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -375,14 +375,14 @@ export default function Transactions() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 mb-8">
 
             <div>
-              <motion.h2
+              <m.h2
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
                 className="text-3xl font-bold text-gray-800"
               >
                 Transaction History
-              </motion.h2>
+              </m.h2>
 
               <p className="text-gray-500 mt-2">
                 Track all your recent banking activities
@@ -392,7 +392,7 @@ export default function Transactions() {
             <div className="flex flex-col sm:flex-row gap-4">
 
               {/* SEARCH */}
-              <motion.div
+              <m.div
                 whileFocus={{ scale: 1.02 }}
                 className="flex items-center bg-gray-100 rounded-2xl px-4"
               >
@@ -403,10 +403,10 @@ export default function Transactions() {
                   placeholder="Search transaction"
                   className="bg-transparent p-3 focus:outline-none"
                 />
-              </motion.div>
+              </m.div>
 
               {/* FILTER */}
-              <motion.button
+              <m.button
                 whileHover={{
                   scale: 1.05,
                   y: -2,
@@ -418,7 +418,7 @@ export default function Transactions() {
               >
                 <Filter size={18} />
                 Filter
-              </motion.button>
+              </m.button>
             </div>
           </div>
 
@@ -435,7 +435,7 @@ export default function Transactions() {
           <div className="space-y-4 mt-4">
 
             {transactions.map((item, index) => (
-              <motion.div
+              <m.div
                 key={item.id}
                 initial={{
                   opacity: 0,
@@ -462,17 +462,17 @@ export default function Transactions() {
               >
 
                 {/* HOVER BG */}
-                <motion.div
+                <m.div
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "100%" }}
                   transition={{
                     duration: 1,
                   }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                  className="absolute inset-0 bg-linear-to-r from-transparent via-white/40 to-transparent"
                 />
 
                 {/* SIDE LINE */}
-                <motion.div
+                <m.div
                   initial={{ height: 0 }}
                   animate={{ height: "100%" }}
                   transition={{
@@ -489,7 +489,7 @@ export default function Transactions() {
                 {/* NAME */}
                 <div className="relative z-10 flex items-center gap-4">
 
-                  <motion.div
+                  <m.div
                     whileHover={{
                       rotate: item.type === "Credit" ? -8 : 8,
                       scale: 1.12,
@@ -501,7 +501,7 @@ export default function Transactions() {
                     className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-md ${item.color}`}
                   >
                     {item.icon}
-                  </motion.div>
+                  </m.div>
 
                   <div>
                     <h3 className="font-semibold text-gray-800 text-[15px]">
@@ -523,7 +523,7 @@ export default function Transactions() {
 
                 {/* TYPE */}
                 <div className="relative z-10">
-                  <motion.span
+                  <m.span
                     whileHover={{
                       scale: 1.08,
                     }}
@@ -534,13 +534,13 @@ export default function Transactions() {
                     }`}
                   >
                     {item.type}
-                  </motion.span>
+                  </m.span>
                 </div>
 
                 {/* STATUS */}
                 <div className="relative z-10">
 
-                  <motion.span
+                  <m.span
                     animate={
                       item.status === "Pending"
                         ? {
@@ -560,11 +560,11 @@ export default function Transactions() {
                     }`}
                   >
                     {item.status}
-                  </motion.span>
+                  </m.span>
                 </div>
 
                 {/* AMOUNT */}
-                <motion.div
+                <m.div
                   whileHover={{
                     scale: 1.08,
                   }}
@@ -579,11 +579,11 @@ export default function Transactions() {
                   }`}
                 >
                   {item.amount}
-                </motion.div>
-              </motion.div>
+                </m.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </div>
   );

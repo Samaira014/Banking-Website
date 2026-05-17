@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Mail,
   Lock,
   ArrowRight,
   Shield,
   Sparkles,
-} from "lucide-react";
+} from "@/utils/icons";
 
 const Login = () => {
   return (
-    <div className="min-h-screen relative overflow-hidden bg-[#030712] flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen relative overflow-hidden bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 flex items-center justify-center px-4 py-10">
 
       {/* ANIMATED GRID */}
       <div className="absolute inset-0 opacity-20">
@@ -18,7 +18,7 @@ const Login = () => {
       </div>
 
       {/* FLOATING GLOW */}
-      <motion.div
+      <m.div
         animate={{
           x: [0, 120, 0],
           y: [0, -80, 0],
@@ -31,7 +31,7 @@ const Login = () => {
         className="absolute top-0 left-0 w-[400px] h-[400px] bg-cyan-500/30 rounded-full blur-3xl"
       />
 
-      <motion.div
+      <m.div
         animate={{
           x: [0, -100, 0],
           y: [0, 60, 0],
@@ -45,7 +45,7 @@ const Login = () => {
       />
 
       {/* MAIN CARD */}
-      <motion.div
+      <m.div
         initial={{
           opacity: 0,
           scale: 0.8,
@@ -70,7 +70,7 @@ const Login = () => {
         <div className="hidden lg:flex relative flex-col justify-between p-10 bg-gradient-to-br from-cyan-500/20 to-blue-700/20 border-r border-white/10 overflow-hidden">
 
           {/* ANIMATED ICON */}
-          <motion.div
+          <m.div
             animate={{
               rotate: [0, 360],
             }}
@@ -82,12 +82,12 @@ const Login = () => {
             className="w-24 h-24 rounded-[30px] bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/20"
           >
             <Shield className="text-cyan-300" size={45} />
-          </motion.div>
+          </m.div>
 
           {/* TEXT */}
           <div>
 
-            <motion.h1
+            <m.h1
               initial={{
                 opacity: 0,
                 x: -40,
@@ -104,9 +104,9 @@ const Login = () => {
               Digital
               <br />
               Banking
-            </motion.h1>
+            </m.h1>
 
-            <motion.p
+            <m.p
               initial={{
                 opacity: 0,
                 x: -30,
@@ -122,7 +122,7 @@ const Login = () => {
             >
               Experience ultra-fast, secure and smart banking
               with next-generation digital finance.
-            </motion.p>
+            </m.p>
           </div>
 
           {/* FEATURE CARDS */}
@@ -133,7 +133,7 @@ const Login = () => {
               "Instant Transfer",
               "AI Fraud Protection",
             ].map((item, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{
                   opacity: 0,
@@ -153,12 +153,12 @@ const Login = () => {
                 className="bg-white/10 border border-white/10 backdrop-blur-xl rounded-2xl p-4 text-white"
               >
                 {item}
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
           {/* SPARKLE */}
-          <motion.div
+          <m.div
             animate={{
               opacity: [0.4, 1, 0.4],
               scale: [1, 1.2, 1],
@@ -170,14 +170,14 @@ const Login = () => {
             className="absolute top-16 right-16"
           >
             <Sparkles className="text-cyan-300" size={28} />
-          </motion.div>
+          </m.div>
         </div>
 
         {/* RIGHT SIDE */}
         <div className="relative p-6 sm:p-10 md:p-14 bg-white/95">
 
           {/* FLOATING CARD */}
-          <motion.div
+          <m.div
             animate={{
               y: [0, -10, 0],
             }}
@@ -192,10 +192,10 @@ const Login = () => {
             <span className="text-sm font-semibold text-blue-700">
               Secure Login
             </span>
-          </motion.div>
+          </m.div>
 
           {/* MOBILE ICON */}
-          <motion.div
+          <m.div
             animate={{
               scale: [1, 1.1, 1],
               rotate: [0, 6, -6, 0],
@@ -207,10 +207,10 @@ const Login = () => {
             className="lg:hidden w-24 h-24 mx-auto rounded-[30px] bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center shadow-2xl"
           >
             <Shield className="text-white" size={42} />
-          </motion.div>
+          </m.div>
 
           {/* HEADING */}
-          <motion.div
+          <m.div
             initial={{
               opacity: 0,
               y: 20,
@@ -231,13 +231,13 @@ const Login = () => {
             <p className="text-gray-500 mt-4 text-lg">
               Login to access your banking dashboard
             </p>
-          </motion.div>
+          </m.div>
 
           {/* FORM */}
           <form className="mt-10 space-y-6">
 
             {/* EMAIL */}
-            <motion.div
+            <m.div
               initial={{
                 opacity: 0,
                 y: 30,
@@ -254,7 +254,7 @@ const Login = () => {
                 Email Address
               </label>
 
-              <motion.div
+              <m.div
                 whileFocus={{
                   scale: 1.02,
                 }}
@@ -267,11 +267,11 @@ const Login = () => {
                   placeholder="Enter your email"
                   className="w-full bg-transparent p-4 focus:outline-none"
                 />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
 
             {/* PASSWORD */}
-            <motion.div
+            <m.div
               initial={{
                 opacity: 0,
                 y: 30,
@@ -288,7 +288,7 @@ const Login = () => {
                 Password
               </label>
 
-              <motion.div
+              <m.div
                 whileFocus={{
                   scale: 1.02,
                 }}
@@ -301,11 +301,11 @@ const Login = () => {
                   placeholder="Enter your password"
                   className="w-full bg-transparent p-4 focus:outline-none"
                 />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
 
             {/* OPTIONS */}
-            <motion.div
+            <m.div
               initial={{
                 opacity: 0,
               }}
@@ -328,10 +328,10 @@ const Login = () => {
               >
                 Forgot Password?
               </Link>
-            </motion.div>
+            </m.div>
 
             {/* BUTTON */}
-            <motion.button
+            <m.button
               whileHover={{
                 scale: 1.03,
                 boxShadow:
@@ -344,7 +344,7 @@ const Login = () => {
             >
 
               {/* BUTTON GLOW */}
-              <motion.div
+              <m.div
                 animate={{
                   x: ["-100%", "200%"],
                 }}
@@ -363,11 +363,11 @@ const Login = () => {
                 size={22}
                 className="relative z-10 group-hover:translate-x-1 transition"
               />
-            </motion.button>
+            </m.button>
           </form>
 
           {/* REGISTER */}
-          <motion.p
+          <m.p
             initial={{
               opacity: 0,
             }}
@@ -387,9 +387,9 @@ const Login = () => {
             >
               Register
             </Link>
-          </motion.p>
+          </m.p>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 };

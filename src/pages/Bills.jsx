@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+
+import { useMemo, useState} from "react";
+import { m } from "framer-motion";
 import {
   Zap,
   Wifi,
@@ -16,7 +17,7 @@ import {
   Wallet,
   Eye,
   EyeOff,
-} from "lucide-react";
+} from "@/utils/icons";
 
 const billsData = [
   {
@@ -103,11 +104,11 @@ export default function Bills() {
   const walletBalance = 125400;
 
   return (
-    <div className="min-h-screen bg-[#050816] text-white overflow-hidden relative">
+    <div className="min-h-screen bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 overflow-hidden relative">
       {/* Background Effects */}
-      <div className="absolute top-0 left-0 w-[450px] h-[450px] bg-cyan-500/10 blur-[130px] rounded-full" />
+      <div className="absolute top-0 left-0 w-112.5 h-112.5 bg-cyan-500/10 blur-[130px] rounded-full" />
 
-      <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-blue-500/10 blur-[130px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-112.5 h-112.5 bg-blue-500/10 blur-[130px] rounded-full" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
         
@@ -143,10 +144,10 @@ export default function Bills() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="
-                w-full sm:w-[280px]
+                w-full sm:w-70
                 h-14
                 rounded-2xl
-                bg-white/[0.05]
+                bg-white/5
                 border border-white/10
                 pl-12 pr-5
                 outline-none
@@ -161,7 +162,7 @@ export default function Bills() {
               onClick={() => setShowBalance(!showBalance)}
               className="
               w-14 h-14 rounded-2xl
-              bg-white/[0.05]
+              bg-white/5
               border border-white/10
               flex items-center justify-center
               hover:bg-white/10
@@ -179,7 +180,7 @@ export default function Bills() {
               className="
               relative
               w-14 h-14 rounded-2xl
-              bg-white/[0.05]
+              bg-white/5
               border border-white/10
               flex items-center justify-center
               hover:bg-white/10
@@ -194,7 +195,7 @@ export default function Bills() {
         </div>
 
         {/* Wallet Card */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           whileHover={{ y: -4 }}
@@ -202,7 +203,7 @@ export default function Bills() {
           mt-10
           relative overflow-hidden
           rounded-[36px]
-          bg-gradient-to-br from-[#0f172a] via-[#172554] to-[#0b1120]
+          bg-linear-to-br from-[#0f172a] via-[#172554] to-[#0b1120]
           border border-white/10
           p-7 md:p-10
           shadow-[0_25px_80px_rgba(0,0,0,0.45)]
@@ -241,7 +242,7 @@ export default function Bills() {
             {/* Right Stats */}
             <div className="grid grid-cols-2 gap-5 w-full lg:w-auto">
 
-              <div className="rounded-3xl bg-white/[0.05] border border-white/10 p-5 min-w-[170px]">
+              <div className="rounded-3xl bg-white/5 border border-white/10 p-5 min-w-42.5">
                 <p className="text-slate-400 text-sm">
                   Pending Bills
                 </p>
@@ -256,7 +257,7 @@ export default function Bills() {
                 </div>
               </div>
 
-              <div className="rounded-3xl bg-white/[0.05] border border-white/10 p-5 min-w-[170px]">
+              <div className="rounded-3xl bg-white/5 border border-white/10 p-5 min-w-42.5">
                 <p className="text-slate-400 text-sm">
                   Paid Bills
                 </p>
@@ -272,7 +273,7 @@ export default function Bills() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Bills Section */}
         <div className="mt-12 flex items-center justify-between">
@@ -293,7 +294,7 @@ export default function Bills() {
             const paid = paidBills.includes(bill.id);
 
             return (
-              <motion.div
+              <m.div
                 key={bill.id}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -305,7 +306,7 @@ export default function Bills() {
                 className="
                 relative overflow-hidden
                 rounded-[34px]
-                bg-white/[0.05]
+                bg-white/5
                 border border-white/10
                 backdrop-blur-3xl
                 p-7
@@ -313,7 +314,7 @@ export default function Bills() {
               >
                 {/* Card Glow */}
                 <div
-                  className={`absolute inset-0 opacity-10 bg-gradient-to-br ${bill.color}`}
+                  className={`absolute inset-0 opacity-10 bg-linear-to-br ${bill.color}`}
                 />
 
                 <div className="relative z-10">
@@ -332,7 +333,7 @@ export default function Bills() {
                       {bill.icon}
                     </div>
 
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.05] border border-white/10 text-sm text-slate-300">
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm text-slate-300">
                       <CalendarDays size={16} />
                       {bill.due}
                     </div>
@@ -361,13 +362,13 @@ export default function Bills() {
                       </h3>
                     </div>
 
-                    <div className="w-14 h-14 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-cyan-300">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-300">
                       <CreditCard />
                     </div>
                   </div>
 
                   {/* Button */}
-                  <motion.button
+                  <m.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => handlePay(bill.id)}
@@ -384,7 +385,7 @@ export default function Bills() {
                     ${
                       paid
                         ? "bg-green-500/20 text-green-300 border border-green-500/30"
-                        : "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_15px_35px_rgba(6,182,212,0.35)] hover:shadow-[0_20px_45px_rgba(6,182,212,0.45)]"
+                        : "bg-linear-to-r from-cyan-500 to-blue-600 text-white shadow-[0_15px_35px_rgba(6,182,212,0.35)] hover:shadow-[0_20px_45px_rgba(6,182,212,0.45)]"
                     }
                     `}
                   >
@@ -399,9 +400,9 @@ export default function Bills() {
                         <ArrowUpRight size={20} />
                       </>
                     )}
-                  </motion.button>
+                  </m.button>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

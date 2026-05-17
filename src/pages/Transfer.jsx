@@ -1,19 +1,19 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Send,
   ShieldCheck,
   CreditCard,
   User,
   Building2,
-} from "lucide-react";
+} from "@/utils/icons";
 
 export default function Transfer() {
   return (
-    <div className="min-h-screen bg-[#f4f7fe] flex items-center justify-center p-4 md:p-8">
+    <div className="min-h-screen  bg-gray-100 dark:bg-zinc-900 text-black dark:text-black transition-all duration-300 flex items-center justify-center p-4 md:p-8">
       <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* LEFT SIDE */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -23,7 +23,7 @@ export default function Transfer() {
           {/* HEADER */}
           <div className="bg-linear-to-r from-blue-700 to-indigo-700 p-8 text-white relative">
 
-            <motion.div
+            <m.div
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.1, 0.2, 0.1],
@@ -47,7 +47,7 @@ export default function Transfer() {
                 </p>
               </div>
 
-              <motion.div
+              <m.div
                 animate={{ y: [0, -4, 0] }}
                 transition={{
                   repeat: Infinity,
@@ -59,7 +59,7 @@ export default function Transfer() {
                 <span className="font-medium">
                   Secured
                 </span>
-              </motion.div>
+              </m.div>
             </div>
           </div>
 
@@ -67,7 +67,7 @@ export default function Transfer() {
           <div className="p-6 md:p-8">
 
             {/* BALANCE CARD */}
-            <motion.div
+            <m.div
               whileHover={{ scale: 1.02 }}
               className="bg-[#101828] rounded-[28px] p-6 text-white mb-8"
             >
@@ -75,7 +75,7 @@ export default function Transfer() {
                 Available Balance
               </p>
 
-              <motion.h2
+              <m.h2
                 animate={{
                   opacity: [1, 0.8, 1],
                 }}
@@ -86,13 +86,13 @@ export default function Transfer() {
                 className="text-4xl font-bold mt-2"
               >
                 ₹ 1,24,500
-              </motion.h2>
+              </m.h2>
 
               <div className="flex justify-between mt-8 text-sm text-gray-400">
                 <span>Savings Account</span>
                 <span>•••• 4521</span>
               </div>
-            </motion.div>
+            </m.div>
 
             <form className="space-y-6">
 
@@ -198,7 +198,7 @@ export default function Transfer() {
               {/* BUTTONS */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
 
-                <motion.button
+                <m.button
                   whileHover={{
                     scale: 1.03,
                   }}
@@ -209,9 +209,9 @@ export default function Transfer() {
                 >
                   <Send size={20} />
                   Transfer Now
-                </motion.button>
+                </m.button>
 
-                <motion.button
+                <m.button
                   whileHover={{
                     scale: 1.03,
                   }}
@@ -221,14 +221,14 @@ export default function Transfer() {
                   className="flex-1 bg-gray-200 text-gray-700 py-4 rounded-2xl font-semibold"
                 >
                   Cancel
-                </motion.button>
+                </m.button>
               </div>
             </form>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* RIGHT SIDE */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -258,7 +258,7 @@ export default function Transfer() {
                   bank: "SBI Bank",
                 },
               ].map((item, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   whileHover={{
                     y: -3,
@@ -286,13 +286,13 @@ export default function Transfer() {
                   <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl">
                     Send
                   </button>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
 
           {/* SECURITY CARD */}
-          <motion.div
+          <m.div
             whileHover={{
               scale: 1.02,
             }}
@@ -316,10 +316,10 @@ export default function Transfer() {
                 Enable 2-factor authentication.
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* STATUS CARD */}
-          <motion.div
+          <m.div
             animate={{
               y: [0, -5, 0],
             }}
@@ -340,8 +340,8 @@ export default function Transfer() {
             <p className="text-gray-500 mt-3">
               Money gets transferred within seconds.
             </p>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </div>
   );

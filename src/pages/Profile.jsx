@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
   ShieldCheck,
@@ -11,7 +11,7 @@ import {
   Lock,
   Fingerprint,
   Edit3,
-} from "lucide-react";
+} from "@/utils/icons";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -28,11 +28,11 @@ export default function Profile() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f4f7fb] overflow-hidden">
+    <div className="min-h-screen bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 overflow-hidden">
 
       {/* BACKGROUND GLOW */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
+        <m.div
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.12, 0.2, 0.12],
@@ -49,7 +49,7 @@ export default function Profile() {
       <div className="relative z-10 max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
 
         {/* PROFILE HEADER */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -62,7 +62,7 @@ export default function Profile() {
         >
 
           {/* ANIMATED CIRCLE */}
-          <motion.div
+          <m.div
             animate={{
               scale: [1, 1.15, 1],
               opacity: [0.15, 0.3, 0.15],
@@ -80,7 +80,7 @@ export default function Profile() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-5">
 
               {/* PROFILE IMAGE */}
-              <motion.div
+              <m.div
                 whileHover={{
                   scale: 1.08,
                   rotate: 5,
@@ -88,25 +88,25 @@ export default function Profile() {
                 className="w-24 h-24 bg-white/15 backdrop-blur-xl border border-white/20 text-white flex items-center justify-center rounded-full text-4xl font-bold shadow-xl"
               >
                 S
-              </motion.div>
+              </m.div>
 
               <div>
 
-                <motion.h2
+                <m.h2
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
                   className="text-3xl font-bold"
                 >
                   {user.name}
-                </motion.h2>
+                </m.h2>
 
                 <p className="text-blue-100 mt-1">
                   {user.email}
                 </p>
 
                 {/* KYC BADGE */}
-                <motion.div
+                <m.div
                   animate={{
                     y: [0, -2, 0],
                   }}
@@ -118,12 +118,12 @@ export default function Profile() {
                 >
                   <ShieldCheck size={18} />
                   KYC {user.kycStatus}
-                </motion.div>
+                </m.div>
               </div>
             </div>
 
             {/* BUTTON */}
-            <motion.button
+            <m.button
               whileHover={{
                 scale: 1.05,
               }}
@@ -135,9 +135,9 @@ export default function Profile() {
             >
               <Edit3 size={18} />
               Edit Profile
-            </motion.button>
+            </m.button>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* GRID */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
@@ -146,7 +146,7 @@ export default function Profile() {
           <div className="xl:col-span-2 space-y-6">
 
             {/* PERSONAL INFO */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
@@ -195,10 +195,10 @@ export default function Profile() {
                   value={user.address}
                 />
               </div>
-            </motion.div>
+            </m.div>
 
             {/* ACCOUNT INFO */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
@@ -247,14 +247,14 @@ export default function Profile() {
               <p className="text-sm text-gray-400 mt-5">
                 * These details cannot be edited
               </p>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* RIGHT SIDE */}
           <div className="space-y-6">
 
             {/* SECURITY */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
@@ -272,7 +272,7 @@ export default function Profile() {
 
               <div className="space-y-4">
 
-                <motion.button
+                <m.button
                   whileHover={{
                     scale: 1.03,
                   }}
@@ -289,9 +289,9 @@ export default function Profile() {
                   </div>
 
                   →
-                </motion.button>
+                </m.button>
 
-                <motion.button
+                <m.button
                   whileHover={{
                     scale: 1.03,
                   }}
@@ -308,12 +308,12 @@ export default function Profile() {
                   </div>
 
                   →
-                </motion.button>
+                </m.button>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* BANK STATUS */}
-            <motion.div
+            <m.div
               animate={{
                 y: [0, -6, 0],
               }}
@@ -353,7 +353,7 @@ export default function Profile() {
                   Last Login: Today
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>
@@ -364,7 +364,7 @@ export default function Profile() {
 /* INFO CARD */
 function InfoCard({ icon, label, value }) {
   return (
-    <motion.div
+    <m.div
       whileHover={{
         y: -4,
         scale: 1.02,
@@ -380,6 +380,6 @@ function InfoCard({ icon, label, value }) {
       <h3 className="text-lg font-semibold text-gray-800 break-words">
         {value}
       </h3>
-    </motion.div>
+    </m.div>
   );
 }

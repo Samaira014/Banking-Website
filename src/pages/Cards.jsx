@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { m } from "framer-motion";
 
 import {
   Bell,
@@ -21,7 +20,7 @@ import {
   Sun,
   Check,
   QrCode,
-} from "lucide-react";
+} from "@/utils/icons";
 
 const cardsData = [
   {
@@ -30,8 +29,7 @@ const cardsData = [
     number: "4587",
     holder: "Samaira Singh",
     balance: 245600,
-    color:
-      "from-[#111827] via-[#172554] to-[#0f172a]",
+    color: "from-[#111827] via-[#172554] to-[#0f172a]",
   },
   {
     id: 2,
@@ -39,8 +37,7 @@ const cardsData = [
     number: "9821",
     holder: "Samaira Singh",
     balance: 84500,
-    color:
-      "from-[#1e1b4b] via-[#312e81] to-[#0f172a]",
+    color: "from-[#1e1b4b] via-[#312e81] to-[#0f172a]",
   },
 ];
 
@@ -92,33 +89,25 @@ function formatCurrency(value) {
 
 function Card({ card, active, onClick, hidden, frozen }) {
   return (
-    <motion.div
-      whileHover={{ y: -10, scale: 1.02 }}
+    <m.div
+      whileHover={{ y: -4 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 220 }}
+      transition={{ duration: 0.25 }}
       onClick={onClick}
       className={`
       relative overflow-hidden cursor-pointer
-      rounded-[36px] p-7 min-h-[260px]
-      bg-gradient-to-br ${card.color}
+      rounded-[36px] p-7 min-h-65
+      bg-linear-to-br ${card.color}
       border ${active ? "border-cyan-400/40" : "border-white/10"}
-      shadow-[0_25px_80px_rgba(0,0,0,0.45)]
-      backdrop-blur-3xl
+      shadow-2xl
+      backdrop-blur-sm
+      will-change-transform
       `}
     >
-      <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/5" />
+      <div className="absolute inset-0 bg-linear-to-tr from-white/10 via-transparent to-white/5" />
 
-      <motion.div
-        animate={{
-          x: ["-100%", "200%"],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 4,
-          ease: "linear",
-        }}
-        className="absolute top-0 left-0 w-40 h-full bg-white/10 blur-2xl rotate-12"
-      />
+      {/* Optimized Static Shine */}
+      <div className="absolute top-0 left-0 w-40 h-full bg-white/5 blur-xl rotate-12 opacity-40" />
 
       <div className="relative z-10 flex flex-col justify-between h-full">
         <div className="flex items-start justify-between">
@@ -173,21 +162,27 @@ function Card({ card, active, onClick, hidden, frozen }) {
           </div>
         </div>
       )}
-    </motion.div>
+    </m.div>
   );
 }
 
-function ActionCard({ icon, title, subtitle, color, onClick, }) {
+function ActionCard({
+  icon,
+  title,
+  subtitle,
+  color,
+  onClick,
+}) {
   return (
-    <motion.div
-      whileHover={{ y: -8 }}
-      whileTap={{ scale: 0.96 }}
-      transition={{ type: "spring", stiffness: 220 }}
+    <m.div
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.25 }}
       onClick={onClick}
-      className="group relative overflow-hidden rounded-[30px] bg-white/5 border border-white/10 p-6 backdrop-blur-2xl hover:border-cyan-400/30 transition-all duration-500"
+      className="group relative overflow-hidden rounded-[30px] bg-white/5 border border-white/10 p-6 backdrop-blur-sm hover:border-cyan-400/30 transition-all duration-300 will-change-transform"
     >
       <div
-        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br ${color}`}
+        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br ${color}`}
       />
 
       <div className="relative z-10">
@@ -205,7 +200,7 @@ function ActionCard({ icon, title, subtitle, color, onClick, }) {
           </p>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -213,10 +208,7 @@ function Transaction({ item }) {
   const income = item.amount > 0;
 
   return (
-    <motion.div
-      whileHover={{ x: 5 }}
-      className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10"
-    >
+    <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 transition-all duration-300 hover:bg-white/[0.06]">
       <div className="flex items-center gap-4">
         <div
           className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
@@ -257,7 +249,7 @@ function Transaction({ item }) {
           {item.category}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -267,7 +259,9 @@ export default function BankingDashboard() {
   const [darkMode, setDarkMode] = useState(true);
   const [frozenCards, setFrozenCards] = useState([]);
   const [filter, setFilter] = useState("all");
+
   const navigate = useNavigate();
+
   const toggleFreeze = () => {
     setFrozenCards((prev) =>
       prev.includes(activeCard)
@@ -296,14 +290,15 @@ export default function BankingDashboard() {
           : "bg-[#f4f7fb] text-slate-900"
       }`}
     >
+      {/* Optimized Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-500/20 blur-[150px] animate-pulse rounded-full" />
+        <div className="absolute top-0 left-0 w-[320px] h-80 bg-cyan-500/10 blur-3xl rounded-full" />
 
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/20 blur-[150px] animate-pulse rounded-full" />
+        <div className="absolute bottom-0 right-0 w-[320px] h-80 bg-blue-500/10 blur-3xl rounded-full" />
       </div>
 
       <div className="max-w-7xl mx-auto px-5 lg:px-8 py-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6"
@@ -352,16 +347,16 @@ export default function BankingDashboard() {
               {darkMode ? <Sun size={22} /> : <Moon size={22} />}
             </button>
             <Link to="/add-card">
-            <motion.button
+            <m.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
               className="h-14 px-7 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-[0_10px_30px_rgba(6,182,212,0.45)]"
             >
               + Add Card
-            </motion.button>
+            </m.button>
             </Link>
           </div>
-        </motion.div>
+        </m.div>
 
         <div className="grid xl:grid-cols-[1.5fr_0.9fr] gap-8 mt-14">
           <div>
@@ -455,7 +450,7 @@ export default function BankingDashboard() {
                 </div>
 
                 <div className="h-3 rounded-full bg-white/10 overflow-hidden">
-                  <motion.div
+                  <m.div
                     initial={{ width: 0 }}
                     animate={{ width: "68%" }}
                     transition={{ duration: 1 }}
@@ -563,7 +558,7 @@ export default function BankingDashboard() {
               <div className="mt-10 flex items-end justify-between gap-3 h-44">
                 {[40, 70, 55, 90, 60, 80, 45].map(
                   (height, index) => (
-                    <motion.div
+                    <m.div
                       key={index}
                       initial={{ height: 0 }}
                       animate={{ height: `${height}%` }}

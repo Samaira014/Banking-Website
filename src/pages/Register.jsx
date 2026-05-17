@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   User,
   Mail,
@@ -7,14 +7,14 @@ import {
   ArrowRight,
   ShieldCheck,
   CreditCard,
-} from "lucide-react";
+} from "@/utils/icons";
 
 const Register = () => {
   return (
-    <div className="min-h-screen relative overflow-hidden bg-[#f4f7fb] flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen relative overflow-hidden  bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 flex items-center justify-center px-4 py-10">
 
       {/* BACKGROUND GLOW */}
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.35, 0.2],
@@ -25,10 +25,10 @@ const Register = () => {
           repeat: Infinity,
           duration: 8,
         }}
-        className="absolute w-[500px] h-[500px] bg-blue-300 rounded-full blur-3xl -top-40 -left-40"
+        className="absolute w-125 h-125 bg-blue-300 rounded-full blur-3xl -top-40 -left-40"
       />
 
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.15, 0.3, 0.15],
@@ -39,11 +39,11 @@ const Register = () => {
           repeat: Infinity,
           duration: 10,
         }}
-        className="absolute w-[400px] h-[400px] bg-indigo-300 rounded-full blur-3xl bottom-0 right-0"
+        className="absolute w-100 h-100 bg-indigo-300 rounded-full blur-3xl bottom-0 right-0"
       />
 
       {/* MAIN CONTAINER */}
-      <motion.div
+      <m.div
         initial={{
           opacity: 0,
           scale: 0.96,
@@ -62,7 +62,7 @@ const Register = () => {
       >
 
         {/* LEFT SIDE */}
-        <motion.div
+        <m.div
           initial={{
             opacity: 0,
             x: -50,
@@ -74,11 +74,11 @@ const Register = () => {
           transition={{
             duration: 0.8,
           }}
-          className="hidden lg:flex relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#2563eb] p-10 text-white flex-col justify-between"
+          className="hidden lg:flex relative overflow-hidden bg-linear-to-br from-[#0f172a] via-[#1e3a8a] to-[#2563eb] p-10 text-white flex-col justify-between"
         >
 
           {/* GLOW */}
-          <motion.div
+          <m.div
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.15, 0.3, 0.15],
@@ -92,7 +92,7 @@ const Register = () => {
 
           <div className="relative z-10">
 
-            <motion.div
+            <m.div
               animate={{
                 y: [0, -10, 0],
                 rotate: [0, 5, -5, 0],
@@ -104,7 +104,7 @@ const Register = () => {
               className="w-20 h-20 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 flex items-center justify-center"
             >
               <CreditCard size={40} />
-            </motion.div>
+            </m.div>
 
             <h1 className="text-5xl font-bold leading-tight mt-8">
               Smart Digital Banking
@@ -129,7 +129,7 @@ const Register = () => {
                 desc: "Transfer money within seconds",
               },
             ].map((item, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 animate={{
                   y: [0, -6, 0],
@@ -156,13 +156,13 @@ const Register = () => {
                     {item.desc}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* RIGHT SIDE */}
-        <motion.div
+        <m.div
           initial={{
             opacity: 0,
             x: 50,
@@ -180,7 +180,7 @@ const Register = () => {
           {/* MOBILE TOP */}
           <div className="lg:hidden text-center mb-8">
 
-            <motion.div
+            <m.div
               animate={{
                 y: [0, -8, 0],
               }}
@@ -188,10 +188,10 @@ const Register = () => {
                 repeat: Infinity,
                 duration: 2,
               }}
-              className="mx-auto w-20 h-20 rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-xl"
+              className="mx-auto w-20 h-20 rounded-3xl bg-linear-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-xl"
             >
               <CreditCard size={38} />
-            </motion.div>
+            </m.div>
 
             <h1 className="text-3xl font-bold text-gray-800 mt-5">
               Create Account
@@ -205,7 +205,7 @@ const Register = () => {
           {/* DESKTOP TITLE */}
           <div className="hidden lg:block mb-8">
 
-            <motion.h1
+            <m.h1
               initial={{
                 opacity: 0,
                 y: 20,
@@ -220,7 +220,7 @@ const Register = () => {
               className="text-4xl font-bold text-gray-800"
             >
               Create Account
-            </motion.h1>
+            </m.h1>
 
             <p className="text-gray-500 mt-3">
               Start your smart banking journey today
@@ -231,7 +231,7 @@ const Register = () => {
           <form className="space-y-6">
 
             {/* NAME */}
-            <motion.div
+            <m.div
               initial={{
                 opacity: 0,
                 y: 20,
@@ -248,7 +248,7 @@ const Register = () => {
                 Full Name
               </label>
 
-              <motion.div
+              <m.div
                 whileHover={{
                   y: -2,
                 }}
@@ -264,11 +264,11 @@ const Register = () => {
                   placeholder="Enter your full name"
                   className="w-full p-4 bg-transparent focus:outline-none"
                 />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
 
             {/* EMAIL */}
-            <motion.div
+            <m.div
               initial={{
                 opacity: 0,
                 y: 20,
@@ -285,7 +285,7 @@ const Register = () => {
                 Email Address
               </label>
 
-              <motion.div
+              <m.div
                 whileHover={{
                   y: -2,
                 }}
@@ -301,11 +301,11 @@ const Register = () => {
                   placeholder="Enter your email"
                   className="w-full p-4 bg-transparent focus:outline-none"
                 />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
 
             {/* PASSWORD */}
-            <motion.div
+            <m.div
               initial={{
                 opacity: 0,
                 y: 20,
@@ -322,7 +322,7 @@ const Register = () => {
                 Password
               </label>
 
-              <motion.div
+              <m.div
                 whileHover={{
                   y: -2,
                 }}
@@ -338,11 +338,11 @@ const Register = () => {
                   placeholder="Enter password"
                   className="w-full p-4 bg-transparent focus:outline-none"
                 />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
 
             {/* CONFIRM PASSWORD */}
-            <motion.div
+            <m.div
               initial={{
                 opacity: 0,
                 y: 20,
@@ -359,7 +359,7 @@ const Register = () => {
                 Confirm Password
               </label>
 
-              <motion.div
+              <m.div
                 whileHover={{
                   y: -2,
                 }}
@@ -375,11 +375,11 @@ const Register = () => {
                   placeholder="Confirm password"
                   className="w-full p-4 bg-transparent focus:outline-none"
                 />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
 
             {/* BUTTON */}
-            <motion.button
+            <m.button
               whileHover={{
                 scale: 1.03,
                 boxShadow:
@@ -388,11 +388,11 @@ const Register = () => {
               whileTap={{
                 scale: 0.95,
               }}
-              className="group relative overflow-hidden w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl"
+              className="group relative overflow-hidden w-full bg-linear-to-r from-cyan-500 to-blue-600 text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl"
             >
 
               {/* BUTTON GLOW */}
-              <motion.div
+              <m.div
                 animate={{
                   x: ["-100%", "200%"],
                 }}
@@ -411,7 +411,7 @@ const Register = () => {
                 size={22}
                 className="relative z-10 group-hover:translate-x-1 transition"
               />
-            </motion.button>
+            </m.button>
           </form>
 
           {/* LOGIN */}
@@ -427,8 +427,8 @@ const Register = () => {
               </Link>
             </p>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </div>
   );
 };

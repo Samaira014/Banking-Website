@@ -1,66 +1,70 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 
 import Navbar from "./components/Navbar";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
-import Home from "./pages/Home";
 import Footer from "./components/Footer";
-import Profile from "./pages/Profile";
-import EditProfile from "./pages/EditProfile";
-import Transfer from "./pages/Transfer";
-import Transactions from "./pages/Transactions";
-import Cards from "./pages/Cards";
-import AddCard from "./pages/AddCard";
-import Settings from "./pages/Settings";
-import Logout from "./pages/Logout";
-import Bills from "./pages/Bills";
-import ScanPay from "./pages/ScanPay";
+
+// ✅ Lazy Loaded Pages
+const Home = lazy(() => import("./pages/Home"));
+const Register = lazy(() => import("./pages/Register"));
+const Login = lazy(() => import("./pages/Login"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const Profile = lazy(() => import("./pages/Profile"));
+const EditProfile = lazy(() => import("./pages/EditProfile"));
+const Transfer = lazy(() => import("./pages/Transfer"));
+const Transactions = lazy(() => import("./pages/Transactions"));
+const Cards = lazy(() => import("./pages/Cards"));
+const AddCard = lazy(() => import("./pages/AddCard"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Logout = lazy(() => import("./pages/Logout"));
+const Bills = lazy(() => import("./pages/Bills"));
+const ScanPay = lazy(() => import("./pages/ScanPay"));
+const Wallet = lazy(() => import("./pages/Wallet"));
 
 function App() {
   return (
     <BrowserRouter>
-
       {/* Navbar */}
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Register Page */}
-        <Route path="/register" element={<Register />}/>
+      {/* ✅ Suspense Wrapper */}
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center text-lg font-semibold">
+            Loading...
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        {/* Login Page */}
-        <Route path="/login" element={<Login />}/>
+          {/* Auth */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />}/>
 
-        <Route path="/forgot-password" element={<ForgotPassword />}/>
+          {/* Profile */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
 
-        <Route path="/reset-password/:token" element={<ResetPassword />}/>
+          {/* Banking */}
+          <Route path="/transfer" element={<Transfer />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/cards" element={<Cards />} />
+          <Route path="/add-card" element={<AddCard />} />
+          <Route path="/wallet" element={<Wallet />} />
 
-        <Route path="/profile" element={<Profile />} />
+          {/* Utilities */}
+          <Route path="/bills" element={<Bills />} />
+          <Route path="/scan" element={<ScanPay />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/logout" element={<Logout />} />
+        </Routes>
+      </Suspense>
 
-         <Route path="/edit-profile" element={<EditProfile />} />
-         
-         <Route path="/transfer" element={<Transfer />} />
-
-         <Route path="/transactions" element={<Transactions />} />
-
-         <Route path="/cards" element= {<Cards />}/>
-
-         <Route path="/add-card" element={<AddCard />} />
-
-         <Route path="/settings" element={<Settings />} />
-
-         <Route path="/logout" element={<Logout />} />
-
-         <Route path="/bills" element={<Bills />}/>
-
-         <Route path="/scan" element={<ScanPay />}/>
-      </Routes>
+      {/* Footer */}
       <Footer />
     </BrowserRouter>
   );

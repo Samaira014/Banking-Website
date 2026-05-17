@@ -1,11 +1,12 @@
+import { m } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ShieldCheck,
   CreditCard,
   Wallet,
-} from "lucide-react";
-import { motion } from "framer-motion";
+} from "@/utils/icons";
+
 
 function Home() {
   const quickActions = [
@@ -30,13 +31,13 @@ function Home() {
     <div className="min-h-screen bg-gray-100">
 
       {/* 🔹 Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 text-white">
+      <section className="bg-linear-to-r from-blue-600 via-indigo-600 to-purple-700 text-white">
         <div className="max-w-7xl mx-auto px-6 py-20">
 
           <div className="flex flex-col md:flex-row items-center gap-12">
 
             {/* Left Content */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
@@ -73,10 +74,10 @@ function Home() {
                 </button>
 
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Right Card */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
@@ -119,7 +120,7 @@ function Home() {
                 </div>
 
               </div>
-            </motion.div>
+            </m.div>
 
           </div>
 

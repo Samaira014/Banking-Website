@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useMemo } from "react";
+import { m } from "framer-motion";
 import {
   QrCode,
   Flashlight,
@@ -11,7 +11,49 @@ import {
   Wallet,
   Camera,
   Sparkles,
-} from "lucide-react";
+  Search,
+} from "@/utils/icons";
+
+const recentPayments = [
+  {
+    id: 1,
+    name: "Starbucks",
+    time: "2 mins ago",
+    amount: 799,
+  },
+  {
+    id: 2,
+    name: "Uber",
+    time: "Today",
+    amount: 320,
+  },
+  {
+    id: 3,
+    name: "Zomato",
+    time: "Yesterday",
+    amount: 650,
+  },
+];
+
+const controls = [
+  {
+    title: "Camera",
+    icon: Camera,
+  },
+  {
+    title: "Secure",
+    icon: ShieldCheck,
+  },
+  {
+    title: "AI Scan",
+    icon: Sparkles,
+  },
+];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+};
 
 function formatCurrency(value) {
   return new Intl.NumberFormat("en-IN", {
@@ -21,11 +63,55 @@ function formatCurrency(value) {
   }).format(value);
 }
 
+function PaymentItem({ item }) {
+  return (
+    <m.div
+      whileHover={{ x: 4 }}
+      className="
+      flex items-center justify-between
+      p-4 rounded-3xl
+      bg-[#0A1322]
+      border border-white/10
+      hover:border-cyan-500/20
+      transition-all duration-300
+      "
+    >
+      <div className="flex items-center gap-4">
+        <div
+          className="
+          w-14 h-14 rounded-2xl
+          bg-cyan-500/10
+          border border-cyan-500/10
+          flex items-center justify-center
+          text-cyan-300
+          "
+        >
+          <QrCode size={22} />
+        </div>
+
+        <div>
+          <h3 className="font-semibold text-base">
+            {item.name}
+          </h3>
+
+          <p className="text-slate-400 text-sm mt-1">
+            {item.time}
+          </p>
+        </div>
+      </div>
+
+      <h3 className="text-red-400 font-semibold text-lg">
+        -{formatCurrency(item.amount)}
+      </h3>
+    </m.div>
+  );
+}
+
 export default function ScanPay() {
   const [flash, setFlash] = useState(false);
   const [paid, setPaid] = useState(false);
 
-  const walletBalance = 125400;
+  const walletBalance = useMemo(() => 125400, []);
 
   const handlePayment = () => {
     setPaid(true);
@@ -35,57 +121,44 @@ export default function ScanPay() {
     }, 3000);
   };
 
-  const recentPayments = [
-    {
-      name: "Starbucks",
-      time: "2 mins ago",
-      amount: "₹799",
-    },
-    {
-      name: "Uber",
-      time: "Today",
-      amount: "₹320",
-    },
-    {
-      name: "Zomato",
-      time: "Yesterday",
-      amount: "₹650",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-[#070b14] text-white overflow-hidden relative">
-      {/* Background */}
-      <div className="absolute top-[-150px] left-[-120px] w-[400px] h-[400px] bg-cyan-500/10 blur-[120px] rounded-full" />
+    <div className="min-h-screen  bg-gray-100 dark:bg-zinc-900  dark:text-white transition-all duration-300 text-white overflow-hidden relative">
+      {/* Background Glow */}
+      <div className="absolute -top-37.5 -left-25 w-100 h-100 bg-cyan-500/10 blur-[120px] rounded-full" />
 
-      <div className="absolute bottom-[-180px] right-[-120px] w-[450px] h-[450px] bg-blue-500/10 blur-[140px] rounded-full" />
+      <div className="absolute -bottom-45 -right-30 w-112.5 h-112.5 bg-blue-500/10 blur-[140px] rounded-full" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
-
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-
+        {/* HEADER */}
+        <m.div
+          {...fadeUp}
+          className="
+          flex flex-col lg:flex-row
+          lg:items-center
+          lg:justify-between
+          gap-6
+          "
+        >
           <div>
-            <p className="text-cyan-400 font-medium tracking-wide">
+            <p className="text-cyan-400 font-medium tracking-[3px] text-sm">
               DIGITAL PAYMENT
             </p>
 
-            <h1 className="text-4xl md:text-5xl font-bold mt-2">
+            <h1 className="text-4xl md:text-5xl font-bold mt-3">
               Scan & Pay
             </h1>
 
-            <p className="text-slate-400 mt-3 text-base md:text-lg">
-              Secure QR payments with instant confirmation
+            <p className="text-slate-400 mt-4 max-w-lg">
+              Fast, secure and AI-powered QR payments with
+              real-time confirmation.
             </p>
           </div>
 
-          {/* Wallet */}
-          <div className="flex items-center gap-4">
-
-            <div className="rounded-3xl bg-white/[0.04] border border-white/10 px-6 py-4 backdrop-blur-2xl min-w-[220px]">
+          {/* RIGHT HEADER */}
+          <div className="flex flex-wrap items-center gap-4">
+            <div className=" rounded-3xl bg-white/4 border border-white/10 px-5 py-4 backdrop-blur-3xl min-w-60">
               <div className="flex items-center gap-4">
-
-                <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-cyan-300">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 flex items-center justify-center text-cyan-300 ">
                   <Wallet size={26} />
                 </div>
 
@@ -101,173 +174,237 @@ export default function ScanPay() {
               </div>
             </div>
 
-            <button className="relative w-14 h-14 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center hover:bg-white/[0.07] transition-all">
+            <button className="
+              relative w-14 h-14 rounded-2xl
+              bg-white/4
+              border border-white/10
+              flex items-center justify-center
+              hover:bg-white/8
+              transition-all
+              "
+            >
+              <Search size={20} />
+            </button>
+
+            <button className="relative w-14 h-14 rounded-2xl bg-white/4 border border-white/10 flex items-center justify-center hover:bg-white/8 transition-all ">
               <Bell size={20} />
 
               <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-red-500" />
             </button>
           </div>
-        </div>
+        </m.div>
 
-        {/* Main Layout */}
+        {/* MAIN GRID */}
         <div className="grid xl:grid-cols-[1.2fr_0.8fr] gap-8 mt-10">
-
-          {/* Scanner Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="
-            relative
-            overflow-hidden
-            rounded-[38px]
-            border border-white/10
-            bg-[#0c1220]/90
-            backdrop-blur-3xl
-            shadow-[0_25px_80px_rgba(0,0,0,0.45)]
-            p-6 md:p-8
-            "
-          >
-
-            {/* Top */}
+          {/* LEFT */}
+          <m.div
+            {...fadeUp}
+            transition={{ delay: 0.1 }}
+            className="rounded-[38px] border border-white/10 bg-[#0A1120]/90 backdrop-blur-3xl p-5 md:p-8 shadow-[0_20px_70px_rgba(0,0,0,0.45)] ">
+            {/* TOP */}
             <div className="flex items-center justify-between">
-
               <div>
                 <h2 className="text-3xl font-bold">
                   QR Scanner
                 </h2>
 
                 <p className="text-slate-400 mt-2">
-                  Place QR code inside the frame
+                  Scan merchant QR instantly
                 </p>
               </div>
 
-              <div className="w-16 h-16 rounded-3xl bg-cyan-500/15 flex items-center justify-center text-cyan-300 border border-cyan-500/20">
+              <div
+                className="
+                w-16 h-16 rounded-3xl
+                bg-cyan-500/10
+                border border-cyan-500/20
+                flex items-center justify-center
+                text-cyan-300
+                "
+              >
                 <QrCode size={30} />
               </div>
             </div>
 
-            {/* Scanner Box */}
+            {/* SCANNER */}
             <div className="mt-10 flex justify-center">
+              <div
+                className="
+                relative w-full max-w-107.5
+                aspect-square rounded-[38px]
+                overflow-hidden
+                bg-[#050B16]
+                border border-cyan-500/20
+                "
+              >
+                {/* GRID */}
+                <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-size-[32px_32px] "/>
 
-              <div className="relative w-full max-w-[420px] aspect-square rounded-[40px] overflow-hidden bg-[#060b16] border border-cyan-500/20 shadow-inner">
-              {/* Success Overlay */}
-                {paid && (
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-green-500/10 backdrop-blur-md"
-                >
-                    <motion.div
-                    initial={{ scale: 0.5 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 200 }}
-                    className="w-24 h-24 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30"
-                    >
-                    <CheckCircle2 size={60} className="text-green-400" />
-                    </motion.div>
-
-                    <p className="mt-5 text-green-300 font-semibold text-lg">
-                    Payment Successful
-                    </p>
-
-                    <p className="text-green-200/70 text-sm mt-1">
-                    Transaction completed securely
-                    </p>
-                </motion.div>
-                )}
-
-                {/* Grid */}
-                <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:35px_35px]" />
-
-                {/* Scan Animation */}
-                <motion.div
+                {/* SCAN LINE */}
+                <m.div
                   animate={{
-                    y: ["0%", "320px", "0%"],
+                    y: ["0%", "350px", "0%"],
                   }}
                   transition={{
                     repeat: Infinity,
                     duration: 3,
                     ease: "linear",
                   }}
-                  className="absolute left-0 top-0 h-[3px] w-full bg-cyan-400 shadow-[0_0_20px_#22d3ee]"
+                  className="
+                  absolute left-0 top-0
+                  h-0.75 w-full
+                  bg-cyan-400
+                  shadow-[0_0_25px_#22d3ee]
+                  "
                 />
 
-                {/* Corner Borders */}
-                <div className="absolute top-6 left-6 w-14 h-14 border-l-4 border-t-4 border-cyan-400 rounded-tl-2xl" />
+                {/* SUCCESS */}
+                {paid && (
+                  <m.div
+                    initial={{
+                      opacity: 0,
+                      scale: 0.9,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                    }}
+                    className="
+                    absolute inset-0 z-20
+                    flex flex-col items-center justify-center
+                    bg-green-500/10
+                    backdrop-blur-md
+                    "
+                  >
+                    <div
+                      className="
+                      w-28 h-28 rounded-full
+                      bg-green-500/20
+                      border border-green-500/30
+                      flex items-center justify-center
+                      "
+                    >
+                      <CheckCircle2
+                        size={64}
+                        className="text-green-400"
+                      />
+                    </div>
 
-                <div className="absolute top-6 right-6 w-14 h-14 border-r-4 border-t-4 border-cyan-400 rounded-tr-2xl" />
+                    <h3 className="mt-6 text-2xl font-bold text-green-300">
+                      Payment Successful
+                    </h3>
 
-                <div className="absolute bottom-6 left-6 w-14 h-14 border-l-4 border-b-4 border-cyan-400 rounded-bl-2xl" />
+                    <p className="text-green-200/70 mt-2">
+                      Transaction completed securely
+                    </p>
+                  </m.div>
+                )}
 
-                <div className="absolute bottom-6 right-6 w-14 h-14 border-r-4 border-b-4 border-cyan-400 rounded-br-2xl" />
+                {/* CORNERS */}
+                {[
+                  "top-6 left-6 border-l-4 border-t-4 rounded-tl-2xl",
+                  "top-6 right-6 border-r-4 border-t-4 rounded-tr-2xl",
+                  "bottom-6 left-6 border-l-4 border-b-4 rounded-bl-2xl",
+                  "bottom-6 right-6 border-r-4 border-b-4 rounded-br-2xl",
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className={`absolute w-14 h-14 border-cyan-400 ${item}`}
+                  />
+                ))}
 
-                {/* Center */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500">
-
-                  <div className="w-28 h-28 rounded-full bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20">
-                    <ScanLine size={60} />
+                {/* CENTER */}
+                <div
+                  className="
+                  absolute inset-0
+                  flex flex-col items-center justify-center
+                  "
+                >
+                  <div
+                    className="
+                    w-28 h-28 rounded-full
+                    bg-cyan-500/10
+                    border border-cyan-500/20
+                    flex items-center justify-center
+                    "
+                  >
+                    <ScanLine
+                      size={60}
+                      className="text-cyan-300"
+                    />
                   </div>
 
-                  <p className="mt-6 text-sm tracking-wide">
+                  <p className="mt-6 text-slate-500 tracking-wide">
                     Waiting for QR Code...
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Controls */}
+            {/* CONTROLS */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+              {controls.map((item, index) => {
+                const Icon = item.icon;
 
-              <button className="h-14 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center gap-3 hover:bg-white/[0.07] transition-all">
-                <Camera size={20} />
-                Camera
-              </button>
+                return (
+                  <m.button
+                    key={index}
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="
+                    h-14 rounded-2xl
+                    bg-white/4
+                    border border-white/10
+                    flex items-center justify-center gap-3
+                    hover:bg-white/8
+                    transition-all duration-300
+                    "
+                  >
+                    <Icon size={20} />
+                    {item.title}
+                  </m.button>
+                );
+              })}
 
-              <button
+              {/* FLASH */}
+              <m.button
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.96 }}
                 onClick={() => setFlash(!flash)}
-                className={`h-14 rounded-2xl border flex items-center justify-center gap-3 transition-all
+                className={`
+                h-14 rounded-2xl
+                border
+                flex items-center justify-center gap-3
+                transition-all duration-300
                 ${
                   flash
                     ? "bg-yellow-500/20 border-yellow-500/30 text-yellow-300"
-                    : "bg-white/[0.04] border-white/10 hover:bg-white/[0.07]"
-                }`}
+                    : "bg-white/4 border-white/10 hover:bg-white/8"
+                }
+                `}
               >
                 <Flashlight size={20} />
                 Flash
-              </button>
-
-              <button className="h-14 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center gap-3 hover:bg-white/[0.07] transition-all">
-                <ShieldCheck size={20} />
-                Secure
-              </button>
-
-              <button className="h-14 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center gap-3 hover:bg-white/[0.07] transition-all">
-                <Sparkles size={20} />
-                AI Scan
-              </button>
+              </m.button>
             </div>
-          </motion.div>
+          </m.div>
 
-          {/* Right Section */}
+          {/* RIGHT */}
           <div className="space-y-7">
-
-            {/* Payment Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
+            {/* PAYMENT CARD */}
+            <m.div
+              {...fadeUp}
+              transition={{ delay: 0.2 }}
               className="
               rounded-[36px]
               border border-white/10
-              bg-[#0c1220]/90
+              bg-[#0A1120]/90
               backdrop-blur-3xl
-              p-7
-              shadow-[0_20px_60px_rgba(0,0,0,0.35)]
+              p-6 md:p-7
+              shadow-[0_20px_70px_rgba(0,0,0,0.35)]
               "
             >
-
-              {/* Merchant */}
               <div className="flex items-center justify-between">
-
                 <div>
                   <p className="text-slate-400 text-sm">
                     Merchant
@@ -282,14 +419,30 @@ export default function ScanPay() {
                   </p>
                 </div>
 
-                <div className="w-16 h-16 rounded-3xl bg-green-500/15 border border-green-500/20 flex items-center justify-center text-green-400">
-                  <CheckCircle2 size={28} />
+                <div
+                  className="
+                  w-16 h-16 rounded-3xl
+                  bg-green-500/15
+                  border border-green-500/20
+                  flex items-center justify-center
+                  "
+                >
+                  <CheckCircle2
+                    size={28}
+                    className="text-green-400"
+                  />
                 </div>
               </div>
 
-              {/* Amount Card */}
-              <div className="mt-8 rounded-[30px] bg-[#070d18] border border-white/10 p-6">
-
+              {/* AMOUNT CARD */}
+              <div
+                className="
+                mt-8 rounded-[30px]
+                bg-[#050B16]
+                border border-white/10
+                p-6
+                "
+              >
                 <p className="text-slate-400">
                   Payment Amount
                 </p>
@@ -299,7 +452,6 @@ export default function ScanPay() {
                 </h3>
 
                 <div className="flex items-center justify-between mt-6">
-
                   <div>
                     <p className="text-slate-500 text-sm">
                       Payment Type
@@ -310,25 +462,29 @@ export default function ScanPay() {
                     </h4>
                   </div>
 
-                  <div className="px-4 py-2 rounded-xl bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+                  <div
+                    className="
+                    px-4 py-2 rounded-xl
+                    bg-cyan-500/10
+                    border border-cyan-500/20
+                    text-cyan-300
+                    "
+                  >
                     UPI
                   </div>
                 </div>
               </div>
 
-              {/* Pay Button */}
-              <motion.button
+              {/* BUTTON */}
+              <m.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handlePayment}
                 className="
-                mt-8
-                w-full
-                h-16
+                mt-8 w-full h-16
                 rounded-2xl
-                bg-gradient-to-r from-cyan-500 to-blue-600
-                font-semibold
-                text-lg
+                bg-linear-to-r from-cyan-500 to-blue-600
+                font-semibold text-lg
                 shadow-[0_15px_40px_rgba(6,182,212,0.35)]
                 flex items-center justify-center gap-3
                 "
@@ -344,24 +500,22 @@ export default function ScanPay() {
                     <ArrowUpRight size={22} />
                   </>
                 )}
-              </motion.button>
-            </motion.div>
+              </m.button>
+            </m.div>
 
-            {/* Recent Payments */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
+            {/* RECENT PAYMENTS */}
+            <m.div
+              {...fadeUp}
+              transition={{ delay: 0.3 }}
               className="
               rounded-[36px]
               border border-white/10
-              bg-[#0c1220]/90
+              bg-[#0A1120]/90
               backdrop-blur-3xl
-              p-7
+              p-6 md:p-7
               "
             >
-
               <div className="flex items-center justify-between">
-
                 <div>
                   <h2 className="text-2xl font-bold">
                     Recent Payments
@@ -372,49 +526,20 @@ export default function ScanPay() {
                   </p>
                 </div>
 
-                <div className="text-cyan-400 text-sm font-medium cursor-pointer">
+                <button className="text-cyan-400 font-medium text-sm">
                   View All
-                </div>
+                </button>
               </div>
 
               <div className="space-y-4 mt-8">
-
-                {recentPayments.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ x: 4 }}
-                    className="
-                    flex items-center justify-between
-                    p-4 rounded-2xl
-                    bg-[#070d18]
-                    border border-white/10
-                    "
-                  >
-
-                    <div className="flex items-center gap-4">
-
-                      <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center text-cyan-300">
-                        <QrCode size={20} />
-                      </div>
-
-                      <div>
-                        <h3 className="font-semibold">
-                          {item.name}
-                        </h3>
-
-                        <p className="text-slate-400 text-sm mt-1">
-                          {item.time}
-                        </p>
-                      </div>
-                    </div>
-
-                    <h3 className="text-red-400 font-semibold text-lg">
-                      -{item.amount}
-                    </h3>
-                  </motion.div>
+                {recentPayments.map((item) => (
+                  <PaymentItem
+                    key={item.id}
+                    item={item}
+                  />
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

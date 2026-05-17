@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Mail,
   ArrowRight,
   ShieldCheck,
   KeyRound,
-} from "lucide-react";
+} from "@/utils/icons";
 
 const ForgotPassword = () => {
   const [message, setMessage] = useState("");
@@ -18,10 +18,10 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#eef4ff] via-[#f8fbff] to-[#e0ecff] flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-screen relative overflow-hidden bg-linear-to-br fbg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
 
       {/* BACKGROUND GLOW */}
-      <motion.div
+      <m.div
         animate={{
           x: [0, 50, 0],
           y: [0, -40, 0],
@@ -35,7 +35,7 @@ const ForgotPassword = () => {
         className="absolute top-[-120px] left-[-120px] w-[320px] sm:w-[450px] h-[320px] sm:h-[450px] bg-blue-400/30 rounded-full blur-3xl"
       />
 
-      <motion.div
+      <m.div
         animate={{
           x: [0, -40, 0],
           y: [0, 40, 0],
@@ -49,7 +49,7 @@ const ForgotPassword = () => {
         className="absolute bottom-[-120px] right-[-120px] w-[300px] sm:w-[420px] h-[300px] sm:h-[420px] bg-cyan-300/30 rounded-full blur-3xl"
       />
 
-      <motion.div
+      <m.div
         animate={{
           opacity: [0.2, 0.4, 0.2],
         }}
@@ -61,7 +61,7 @@ const ForgotPassword = () => {
       />
 
       {/* MAIN CARD */}
-      <motion.div
+      <m.div
         initial={{
           opacity: 0,
           y: 50,
@@ -79,7 +79,7 @@ const ForgotPassword = () => {
         className="relative z-10 w-full max-w-md sm:max-w-lg"
       >
 
-        <motion.div
+        <m.div
           whileHover={{
             y: -5,
           }}
@@ -94,7 +94,7 @@ const ForgotPassword = () => {
           <div className="relative bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-700 px-6 sm:px-8 py-10 text-center overflow-hidden">
 
             {/* FLOATING ICON */}
-            <motion.div
+            <m.div
               animate={{
                 y: [0, -10, 0],
                 rotate: [0, 5, -5, 0],
@@ -106,9 +106,9 @@ const ForgotPassword = () => {
               className="mx-auto w-20 h-20 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 flex items-center justify-center"
             >
               <KeyRound className="text-white" size={40} />
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               animate={{
                 scale: [1, 1.15, 1],
                 opacity: [0.2, 0.4, 0.2],
@@ -135,7 +135,7 @@ const ForgotPassword = () => {
 
             {/* SUCCESS MESSAGE */}
             {message && (
-              <motion.div
+              <m.div
                 initial={{
                   opacity: 0,
                   y: -10,
@@ -148,14 +148,14 @@ const ForgotPassword = () => {
               >
                 <ShieldCheck size={20} />
                 {message}
-              </motion.div>
+              </m.div>
             )}
 
             {/* FORM */}
             <form onSubmit={handleSubmit} className="space-y-6">
 
               {/* EMAIL */}
-              <motion.div
+              <m.div
                 initial={{
                   opacity: 0,
                   x: -20,
@@ -182,10 +182,10 @@ const ForgotPassword = () => {
                     className="w-full bg-transparent p-4 focus:outline-none text-sm sm:text-base"
                   />
                 </div>
-              </motion.div>
+              </m.div>
 
               {/* BUTTON */}
-              <motion.button
+              <m.button
                 type="submit"
                 whileHover={{
                   scale: 1.03,
@@ -209,7 +209,7 @@ const ForgotPassword = () => {
               >
 
                 {/* SHINE EFFECT */}
-                <motion.div
+                <m.div
                   animate={{
                     x: ["-150%", "150%"],
                   }}
@@ -222,7 +222,7 @@ const ForgotPassword = () => {
                 />
 
                 {/* PULSE EFFECT */}
-                <motion.div
+                <m.div
                   animate={{
                     scale: [1, 1.4, 1.4],
                     opacity: [0.4, 0, 0],
@@ -238,7 +238,7 @@ const ForgotPassword = () => {
                   Send Reset Link
                 </span>
 
-                <motion.div
+                <m.div
                   whileHover={{
                     x: 6,
                   }}
@@ -249,12 +249,12 @@ const ForgotPassword = () => {
                   className="relative z-10"
                 >
                   <ArrowRight size={20} />
-                </motion.div>
-              </motion.button>
+                </m.div>
+              </m.button>
             </form>
 
             {/* LOGIN LINK */}
-            <motion.p
+            <m.p
               initial={{
                 opacity: 0,
               }}
@@ -274,10 +274,10 @@ const ForgotPassword = () => {
               >
                 Login
               </Link>
-            </motion.p>
+            </m.p>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </div>
   );
 };

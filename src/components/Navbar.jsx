@@ -1,18 +1,14 @@
 import { Link } from "react-router-dom";
+import useDarkMode from "@/hooks/useDarkMode";
 import { useState } from "react";
-import { Menu, X, Bell, Moon, Sun, User } from "lucide-react";
+import { Menu, X, Bell, Moon, Sun, User } from "@/utils/icons";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark");
-  };
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-md border-b border-gray-200 dark:border-gray-700">
+    <nav className="bg-white dark:bg-zinc-900 shadow-md border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Navbar Container */}
@@ -148,12 +144,12 @@ function Navbar() {
             Transfer
           </Link>
 
-          <a
-            href="/transactions"
+          <Link
+            to="/transactions"
             className="block text-gray-700 dark:text-gray-200 hover:text-blue-600"
           >
             Transactions
-          </a>
+          </Link>
 
           <Link
             to="/profile"

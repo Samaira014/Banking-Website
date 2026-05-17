@@ -1,10 +1,10 @@
-import { LogOut, ShieldCheck, ArrowLeft } from "lucide-react";
-import { motion } from "framer-motion";
+import { LogOut, ShieldCheck, ArrowLeft } from "@/utils/icons";
+import { m } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function Logout() {
   return (
-    <div className="min-h-screen bg-[#0a0f1f] flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 flex items-center justify-center px-4 relative overflow-hidden">
 
       {/* BACKGROUND GLOWS */}
       <div className="absolute top-0 left-0 w-112.5 h-112.5 bg-violet-600/20 blur-[140px] rounded-full"></div>
@@ -12,7 +12,7 @@ export default function Logout() {
       <div className="absolute bottom-0 right-0 w-100 h-100 bg-fuchsia-500/20 blur-[140px] rounded-full"></div>
 
       {/* MAIN CARD */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.9, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -23,7 +23,7 @@ export default function Logout() {
         <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-violet-400 to-transparent"></div>
 
         {/* ICON */}
-        <motion.div
+        <m.div
           animate={{
             y: [0, -8, 0],
           }}
@@ -34,7 +34,7 @@ export default function Logout() {
           className="w-28 h-28 mx-auto rounded-full bg-linear-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shadow-[0_0_40px_rgba(168,85,247,0.5)]"
         >
           <LogOut size={45} className="text-white" />
-        </motion.div>
+        </m.div>
 
         {/* TITLE */}
         <div className="text-center mt-8">
@@ -50,7 +50,7 @@ export default function Logout() {
         </div>
 
         {/* SECURITY INFO */}
-        <motion.div
+        <m.div
           whileHover={{ scale: 1.02 }}
           className="mt-8 bg-white/5 border border-white/5 rounded-3xl p-5"
         >
@@ -73,14 +73,14 @@ export default function Logout() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* BUTTONS */}
         <div className="flex flex-col sm:flex-row gap-4 mt-10">
 
           {/* CANCEL BUTTON */}
           <Link to="/settings" className="flex-1">
-            <motion.button
+            <m.button
               whileHover={{
                 scale: 1.03,
                 backgroundColor: "#1f2937",
@@ -90,22 +90,22 @@ export default function Logout() {
             >
               <ArrowLeft size={20} />
               Cancel
-            </motion.button>
+            </m.button>
           </Link>
 
           {/* LOGOUT BUTTON */}
-          <motion.button
+          <m.button
             whileHover={{
               scale: 1.03,
               boxShadow:
                 "0px 0px 30px rgba(239,68,68,0.4)",
             }}
             whileTap={{ scale: 0.96 }}
-            className="relative overflow-hidden flex-1 py-4 rounded-2xl bg-gradient-to-r from-red-500 to-rose-500 text-white font-semibold shadow-xl"
+            className="relative overflow-hidden flex-1 py-4 rounded-2xl bg-linear-to-r from-red-500 to-rose-500 text-white font-semibold shadow-xl"
           >
 
             {/* SHINE EFFECT */}
-            <motion.div
+            <m.div
               animate={{
                 x: ["-100%", "200%"],
               }}
@@ -114,14 +114,14 @@ export default function Logout() {
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+              className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12"
             />
 
             <span className="relative z-10 flex items-center justify-center gap-2">
               <LogOut size={20} />
               Logout Securely
             </span>
-          </motion.button>
+          </m.button>
         </div>
 
         {/* FOOTER */}
@@ -131,7 +131,7 @@ export default function Logout() {
             NeoBank Secure Authentication System
           </p>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

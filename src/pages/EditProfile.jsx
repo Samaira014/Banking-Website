@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   User,
   Mail,
@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   Camera,
   Sparkles,
-} from "lucide-react";
+} from "@/utils/icons";
 
 export default function EditProfile() {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function EditProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060816] text-white overflow-hidden relative">
+    <div className="min-h-screen bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300  overflow-hidden relative">
       
       {/* BACKGROUND */}
       <div className="absolute inset-0 -z-10">
@@ -62,7 +62,7 @@ export default function EditProfile() {
             </p>
           </div>
 
-          <motion.button
+          <m.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate("/profile")}
@@ -76,14 +76,14 @@ export default function EditProfile() {
           >
             <ArrowLeft size={20} />
             Back
-          </motion.button>
+          </m.button>
         </div>
 
         {/* MAIN GRID */}
         <div className="grid xl:grid-cols-[0.95fr_1.4fr] gap-8 items-start">
 
           {/* LEFT PROFILE CARD */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             className="
@@ -108,7 +108,7 @@ export default function EditProfile() {
               <div className="flex flex-col items-center text-center">
 
                 <div className="relative">
-                  <motion.div
+                  <m.div
                     whileHover={{ scale: 1.05 }}
                     className="
                     w-28 h-28 sm:w-32 sm:h-32
@@ -120,7 +120,7 @@ export default function EditProfile() {
                     "
                   >
                     S
-                  </motion.div>
+                  </m.div>
 
                   <button
                     className="
@@ -227,20 +227,20 @@ export default function EditProfile() {
                     Address
                   </p>
 
-                  <h3 className="font-semibold mt-1 break-words">
+                  <h3 className="font-semibold mt-1 wrap-break-word">
                     {formData.address}
                   </h3>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* RIGHT FORM */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             className="
-            rounded-[32px]
+            rounded-4xl
             bg-white/5
             border border-white/10
             backdrop-blur-3xl
@@ -422,7 +422,7 @@ export default function EditProfile() {
               {/* BUTTONS */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
 
-                <motion.button
+                <m.button
                   type="button"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.96 }}
@@ -438,9 +438,9 @@ export default function EditProfile() {
                   "
                 >
                   Cancel
-                </motion.button>
+                </m.button>
 
-                <motion.button
+                <m.button
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.96 }}
@@ -448,7 +448,7 @@ export default function EditProfile() {
                   flex-1
                   h-14
                   rounded-2xl
-                  bg-gradient-to-r
+                  bg-linear-to-r
                   from-cyan-500
                   to-blue-600
                   text-white
@@ -459,10 +459,10 @@ export default function EditProfile() {
                 >
                   <Save size={20} />
                   Save Changes
-                </motion.button>
+                </m.button>
               </div>
             </form>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </div>

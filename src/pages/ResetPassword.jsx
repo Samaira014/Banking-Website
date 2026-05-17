@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -45,23 +45,23 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-100 via-white to-indigo-100 px-4 overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br  bg-gray-100 dark:bg-zinc-900 text-black dark:text-white transition-all duration-300 px-4 overflow-hidden">
 
       {/* Animated Background Circles */}
-      <motion.div
+      <m.div
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 5, repeat: Infinity }}
         className="absolute top-10 left-10 w-40 h-40 bg-blue-300 opacity-20 rounded-full blur-3xl"
       />
 
-      <motion.div
+      <m.div
         animate={{ y: [0, 20, 0] }}
         transition={{ duration: 6, repeat: Infinity }}
         className="absolute bottom-10 right-10 w-52 h-52 bg-indigo-300 opacity-20 rounded-full blur-3xl"
       />
 
       {/* Card */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 40, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.6 }}
@@ -71,14 +71,14 @@ const ResetPassword = () => {
         {/* Heading */}
         <div className="text-center mb-6">
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
+            className="text-4xl font-extrabold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
           >
             Reset Password
-          </motion.h1>
+          </m.h1>
 
           <p className="text-gray-500 mt-2 text-sm">
             Create a new secure password
@@ -88,31 +88,31 @@ const ResetPassword = () => {
 
         {/* Success Message */}
         {message && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-green-100 text-green-700 p-3 rounded-lg mb-4 text-sm"
           >
             {message}
-          </motion.div>
+          </m.div>
         )}
 
         {/* Error Message */}
         {error && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-sm"
           >
             {error}
-          </motion.div>
+          </m.div>
         )}
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
 
           {/* New Password */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
@@ -132,10 +132,10 @@ const ResetPassword = () => {
               required
             />
 
-          </motion.div>
+          </m.div>
 
           {/* Confirm Password */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
@@ -155,20 +155,20 @@ const ResetPassword = () => {
               required
             />
 
-          </motion.div>
+          </m.div>
 
           {/* Update Button */}
-          <motion.button
+          <m.button
             whileHover={{
               scale: 1.03,
               boxShadow: "0px 10px 25px rgba(37,99,235,0.4)",
             }}
             whileTap={{ scale: 0.97 }}
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold transition duration-300"
+            className="w-full bg-linear-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold transition duration-300"
           >
             Update Password
-          </motion.button>
+          </m.button>
 
         </form>
 
@@ -186,7 +186,7 @@ const ResetPassword = () => {
 
         </p>
 
-      </motion.div>
+      </m.div>
 
     </div>
   );
