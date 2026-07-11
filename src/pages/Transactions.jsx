@@ -85,7 +85,7 @@ export default function Transactions() {
                 duration: 0.3,
               },
             }}
-            className="lg:col-span-2 relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#2563eb] p-8 shadow-2xl"
+            className="lg:col-span-2 relative overflow-hidden rounded-4xl bg-linear-to-br from-[#0f172a] via-[#1e3a8a] to-[#2563eb] p-8 shadow-2xl"
           >
 
             {/* Animated Glow */}
@@ -101,7 +101,7 @@ export default function Transactions() {
                 duration: 8,
                 ease: "easeInOut",
               }}
-              className="absolute w-[420px] h-[420px] bg-blue-400 rounded-full blur-3xl -top-40 -right-20"
+              className="absolute w-105 h-105 bg-blue-400 rounded-full blur-3xl -top-40 -right-20"
             />
 
             <m.div
@@ -232,7 +232,7 @@ export default function Transactions() {
             whileHover={{
               y: -8,
             }}
-            className="bg-white rounded-[32px] p-6 shadow-xl border border-gray-100"
+            className="bg-white rounded-4xl p-6 shadow-xl border border-gray-100"
           >
 
             <div className="flex items-center justify-between">
@@ -289,7 +289,7 @@ export default function Transactions() {
                     duration: 2,
                     ease: "easeOut",
                   }}
-                  className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"
+                  className="h-full bg-linear-to-r from-blue-500 to-indigo-600 rounded-full"
                 />
               </div>
             </div>
@@ -333,7 +333,7 @@ export default function Transactions() {
               whileHover={{
                 x: 5,
               }}
-              className="mt-6 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-4 flex items-center gap-4"
+              className="mt-6 bg-linear-to-r from-indigo-50 to-blue-50 rounded-2xl p-4 flex items-center gap-4"
             >
               <m.div
                 animate={{
@@ -368,7 +368,7 @@ export default function Transactions() {
           transition={{
             duration: 0.7,
           }}
-          className="bg-white rounded-[32px] shadow-xl p-5 sm:p-6 border border-gray-100"
+          className="bg-white rounded-4xl shadow-xl p-5 sm:p-6 border border-gray-100"
         >
 
           {/* HEADER */}
@@ -396,13 +396,9 @@ export default function Transactions() {
                 whileFocus={{ scale: 1.02 }}
                 className="flex items-center bg-gray-100 rounded-2xl px-4"
               >
-                <Search size={20} className="text-gray-400" />
+                <Search size={20} className="text-gray-600" />
 
-                <input
-                  type="text"
-                  placeholder="Search transaction"
-                  className="bg-transparent p-3 focus:outline-none"
-                />
+                <input type="text" placeholder="Search transaction" className="bg-transparent p-3 focus:outline-none text-black"/>
               </m.div>
 
               {/* FILTER */}
@@ -414,7 +410,7 @@ export default function Transactions() {
                 whileTap={{
                   scale: 0.95,
                 }}
-                className="bg-gray-100 hover:bg-gray-200 transition px-5 py-3 rounded-2xl flex items-center justify-center gap-2 font-medium"
+                className="bg-blue-200 hover:bg-gray-200 transition px-5 py-3 rounded-2xl flex items-center justify-center gap-2 font-medium text-black"
               >
                 <Filter size={18} />
                 Filter

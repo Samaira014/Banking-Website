@@ -8,7 +8,23 @@ export default {
   ],
 
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        shine: {
+          "0%": {
+            transform: "translateX(-150%) skewX(12deg)",
+          },
+
+          "100%": {
+            transform: "translateX(350%) skewX(12deg)",
+          },
+        },
+      },
+
+      animation: {
+        shine: "shine 2.5s linear infinite",
+      },
+    },
   },
 
   plugins: [],

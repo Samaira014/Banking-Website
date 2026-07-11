@@ -1,1 +1,294 @@
 @import "tailwindcss";
+
+/* =========================
+   KEYFRAMES
+========================= */
+
+@keyframes floatOne {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(120px, -80px) scale(1.2);
+  }
+}
+
+@keyframes floatTwo {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-100px, 60px) scale(1.15);
+  }
+}
+
+@keyframes glowLeft {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(50px, -40px) scale(1.1);
+  }
+}
+
+@keyframes glowRight {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-40px, 40px) scale(1.15);
+  }
+}
+
+@keyframes card {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseScale {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatIcon {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+
+  75% {
+    transform: translateY(0) rotate(-5deg);
+  }
+}
+
+@keyframes mobileIcon {
+  0%,
+  100% {
+    transform: scale(1) rotate(0);
+  }
+
+  25% {
+    transform: scale(1.1) rotate(6deg);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(-6deg);
+  }
+}
+
+@keyframes buttonFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes topGlow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.4;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-150%) skewX(12deg);
+  }
+
+  100% {
+    transform: translateX(350%) skewX(12deg);
+  }
+}
+
+/* =========================
+   ANIMATION CLASSES
+========================= */
+
+.animate-floatOne {
+  animation: floatOne 10s infinite ease-in-out;
+}
+
+.animate-floatTwo {
+  animation: floatTwo 12s infinite ease-in-out;
+}
+
+.animate-glowLeft {
+  animation: glowLeft 10s infinite ease-in-out;
+}
+
+.animate-glowRight {
+  animation: glowRight 12s infinite ease-in-out;
+}
+
+.animate-card {
+  animation: card 0.7s ease-out;
+}
+
+.animate-slideLeft {
+  animation: slideLeft 0.8s ease forwards;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.4s ease-out;
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out;
+}
+
+.animate-pulseScale {
+  animation: pulseScale 2s infinite ease-in-out;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 6s infinite ease-in-out;
+}
+
+.animate-pulseRing {
+  animation: pulseRing 1.8s infinite;
+}
+
+.animate-floatY {
+  animation: floatY 4s infinite ease-in-out;
+}
+
+.animate-floatIcon {
+  animation: floatIcon 4s infinite ease-in-out;
+}
+
+.animate-mobileIcon {
+  animation: mobileIcon 3s infinite ease-in-out;
+}
+
+.animate-buttonFloat {
+  animation: buttonFloat 2s infinite ease-in-out;
+}
+
+.animate-topGlow {
+  animation: topGlow 5s infinite ease-in-out;
+}
+
+.animate-shine {
+  animation: shine 2.5s infinite linear;
+}
